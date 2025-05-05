@@ -4,9 +4,9 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
+    paths:
+        - 'data/**'
+        - 'train.py'
 
 jobs:
   build:
@@ -28,14 +28,13 @@ jobs:
 
       - name: Train Model
         run: |
-          python train.py  # to be changed
+          python train.py 
 
       - name: Upload Model to GitHub Releases
         uses: softprops/action-gh-release@v1
         with:
-          files: model.pkl  # to be changed
-          name: "Model Release"
-          tag_name: "v${{ github.run_number }}"
-          body: "Automated release of model version ${{ github.run_number }}"
+          files: model_v${{ env.MODEL_VERSION }}.pkl  # to be changed
+          tag_name: "v${{ env.MODEL_VERSION }}"
+          generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
