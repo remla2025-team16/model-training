@@ -16,4 +16,5 @@ The repository includes a GitHub Actions workflow that automatically trains and 
 - `requirements.txt`: Python dependencies
 - `.github/workflows/model-training.yml`: CI workflow that builds and releases the model
 
-
+## implementation detail 
+ separate preprocessing logic from the training logic itself. All data preprocessing is handled by the external `lib-ml` package, which provides a reusable `build_pipeline()` function. This pipeline includes a `CountVectorizer` with stopword removal.
