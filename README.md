@@ -14,7 +14,7 @@ This repository contains the training pipeline for the Restaurant Sentiment Anal
 1. Clone the repository:
 
    ```
-   git clone https://github.com/remla25-team16/model-training.git
+   git clone https://github.com/remla2025-team16/model-training.git
    ```
 
 2. Install dependencies:
