@@ -1,36 +1,20 @@
 # model-training
 
-**Overview**
-This repository contains the training pipeline for the Restaurant Sentiment Analysis model. It preprocesses data, trains the model, and stores the trained model in a versioned manner for use in the `model-service`. Once the model is trained, upload the model through GitHub Release.
+This repository implements the training pipeline for a sentiment classification model using restaurant review data. It uses a reusable preprocessing library (`lib-ml`) and saves a versioned model for later use in model-service and orchestration.
 
-#### **Features**
+## Overview
 
-- Preprocesses restaurant review data using shared logic from `lib-ml`.
-- Trains a sentiment analysis model.
-- Stores trained models with versioning for traceability.
+The training pipeline loads labeled review data, applies text preprocessing, trains a logistic regression classifier, and saves the trained model. Preprocessing is factored out to the separate `lib-ml` repository for consistency and reuse across components.
 
-#### **Setup**
+The repository includes a GitHub Actions workflow that automatically trains and releases the model when a version tag is pushed.
 
-1. Clone the repository:
+## Repository Structure
 
-   ```
-   git clone https://github.com/remla2025-team16/model-training.git
-   ```
+- `src/train.py`: main training script
+- `data/`: contains the training dataset
+- `models/`: output directory for the trained model
+- `requirements.txt`: Python dependencies
+- `.github/workflows/model-training.yml`: CI workflow that builds and releases the model
 
-2. Install dependencies:
-
-   ```
-   pip install -r requirements.txt
-   ```
-
-3. Run the training pipeline:
-
-   ```
-   python train.py
-   ```
-
-   The trained model will be saved to `models/` with a version tag (e.g., `model_v1.0.0.pkl`).
-
-#### **Dependencies**
-
-- Requires `lib-ml` for preprocessing (installed via package manager).
+## implementation detail 
+ separate preprocessing logic from the training logic itself. All data preprocessing is handled by the external `lib-ml` package, which provides a reusable `build_pipeline()` function. This pipeline includes a `CountVectorizer` with stopword removal.
