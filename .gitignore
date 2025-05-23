@@ -1,3 +1,6 @@
 .DS_Store
 models/
-data/
+data/processed/
+output/
+artifacts/
+__pycache__/
