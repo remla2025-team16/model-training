@@ -1,35 +1,54 @@
 import pandas as pd
 import os
 import joblib
+import json
+import argparse
 
 from libml.preprocessing import build_pipeline
+from sklearn.metrics import accuracy_score
 
-data_path = "data/a1_RestaurantReviews_HistoricDump.tsv"
-df = pd.read_csv(data_path, sep="\t")
+def train(input_path: str, model_path: str, metrics_path: str):
+    """
+    Train a sentiment analysis model using a pipeline that includes
+    preprocessing, vectorization, and classification.
+    """
+    data = pd.read_pickle(input_path)
+    X_train, X_test = data["X_train"], data["X_test"]
+    y_train, y_test = data["y_train"], data["y_test"]
 
-X = df["Review"]
-y = df["Liked"]
+    pipeline = build_pipeline()
+    pipeline.fit(X_train, y_train)
 
-pipeline = build_pipeline()
+    os.makedirs(os.path.dirname(model_path), exist_ok=True)
+    joblib.dump(pipeline, model_path)
+    print(f"Model saved to: {model_path}")
 
-pipeline.fit(X, y)
+    preds = pipeline.predict(X_test)
+    acc = accuracy_score(y_test, preds)
 
-os.makedirs("models", exist_ok=True)
-model_path = "models/sentiment-model.pkl"
-joblib.dump(pipeline, model_path)
+    os.makedirs(os.path.dirname(metrics_path), exist_ok=True)
+    with open(metrics_path, "w") as f:
+        json.dump({"accuracy": acc}, f, indent=2)
+    print(f"Accuracy: {acc:.4f}")
+    print(f"Metrics saved to: {metrics_path}")
+    
 
-print(f"Model saved to: {model_path}")
-
-# Test the model
 if __name__ == "__main__":
-    model_path = "models/sentiment-model.pkl"
-    pipeline = joblib.load(model_path)
-    test_data = [
-        "The food was great and the service was excellent!",
-        "I didn't like the ambiance of the restaurant.",
-        "The staff were rude and unhelpful.",
-        "I had a wonderful experience overall."
-    ]
-
-    predictions = pipeline.predict(test_data)
-    print("Predictions for test data:", predictions)
+    parser = argparse.ArgumentParser(description="Train sentiment model and output metrics")
+    parser.add_argument(
+        "--input", "-i",
+        required=True,
+        help="Path to the preprocessed data pickle (contains X_train, X_test, y_train, y_test)"
+    )
+    parser.add_argument(
+        "--model", "-m",
+        required=True,
+        help="Path where the trained model will be saved (e.g. models/model.pkl)"
+    )
+    parser.add_argument(
+        "--metrics", "-e",
+        required=True,
+        help="Path where the metrics JSON will be written (e.g. metrics/accuracy.json)"
+    )
+    args = parser.parse_args()
+    train(args.input, args.model, args.metrics)

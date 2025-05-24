@@ -34,3 +34,33 @@ This repository contains the training pipeline for the Restaurant Sentiment Anal
 #### **Dependencies**
 
 - Requires `lib-ml` for preprocessing (installed via package manager).
+
+## DVC Pipeline
+
+- **Install:** `pip install dvc`  
+- **Initialize:** `dvc init`  
+- **Run all stages:** `dvc repro`  
+- **View pipeline DAG:** `dvc dag`  
+- **Show metrics:** `dvc metrics show`  
+- **Push data to remote storage:** `dvc push`  
+- **Pull data from remote storage:** `dvc pull`
+
+### Remote Configuration
+
+1. Add remote configuration by:
+   ```bash
+   # Or Google Drive
+   dvc remote add -d gdrive gdrive://<YOUR_FOLDER_ID>
+   ```
+2. add account and secret:
+   ```bash
+   dvc remote modify gdrive --local gdrive_client_id <your-client-id>
+   dvc remote modify gdrive --local gdrive_client_secret <your-client-secret>
+   ```
+3. To push/pull local files to remote by running
+   ```bash
+   # push
+   dvc push -r gdrive
+   # pull
+   dvc pull -r gdrive
+   ```
