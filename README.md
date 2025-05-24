@@ -45,12 +45,22 @@ This repository contains the training pipeline for the Restaurant Sentiment Anal
 - **Push data to remote storage:** `dvc push`  
 - **Pull data from remote storage:** `dvc pull`
 
-### Example Remote Configuration
+### Remote Configuration
 
-```bash
-# Local cache
-dvc remote add -d localcache ~/dvc-storage
-
-# Or Google Drive
-dvc remote add -d gdrive gdrive://<YOUR_FOLDER_ID>
-```
+1. Add remote configuration by:
+   ```bash
+   # Or Google Drive
+   dvc remote add -d gdrive gdrive://<YOUR_FOLDER_ID>
+   ```
+2. add account and secret:
+   ```bash
+   dvc remote modify gdrive --local gdrive_client_id <your-client-id>
+   dvc remote modify gdrive --local gdrive_client_secret <your-client-secret>
+   ```
+3. To push/pull local files to remote by running
+   ```bash
+   # push
+   dvc push -r gdrive
+   # pull
+   dvc pull -r gdrive
+   ```
