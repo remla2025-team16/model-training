@@ -8,54 +8,76 @@ stages:
       hash: md5
       md5: 102f1f4193e0bdebdd6cce7f13e0a839
       size: 54686
+      isexec: true
     - path: src/preprocess.py
       hash: md5
-      md5: ab5bb000fc12aec5959f250d8db8274b
-      size: 2203
+      md5: d984badbcffc5bf661b36e1d6273ad3d
+      size: 2204
+      isexec: true
     outs:
+    - path: artifacts/c1_BoW_Sentiment_Model.pkl
+      hash: md5
+      md5: 21f57465a27b5f61c544dabb021a6939
+      size: 39432
+      isexec: true
     - path: data/processed/preprocessed_data.pkl
       hash: md5
-      md5: 18158d9d3455b1ee63466d305594d351
+      md5: 64c81e0f77eacdce6f96dfedb702bb6b
       size: 10231518
+      isexec: true
   train:
-    cmd: python src/train.py --input data/processed/preprocessed_data.pkl --model
-      models/sentiment-model.pkl --metrics artifacts/accuracy.json
+    cmd: python src/train.py --input data/processed/preprocessed_data.pkl --vectorizer
+      artifacts/c1_BoW_Sentiment_Model.pkl --model models/sentiment-model.pkl --metrics
+      artifacts/accuracy.json
     deps:
+    - path: artifacts/c1_BoW_Sentiment_Model.pkl
+      hash: md5
+      md5: 21f57465a27b5f61c544dabb021a6939
+      size: 39432
+      isexec: true
     - path: data/processed/preprocessed_data.pkl
       hash: md5
-      md5: 18158d9d3455b1ee63466d305594d351
+      md5: 64c81e0f77eacdce6f96dfedb702bb6b
       size: 10231518
+      isexec: true
     - path: src/train.py
       hash: md5
-      md5: 2ba5ff1a8820f391ff81aaa902690dfa
-      size: 1742
+      md5: 6d4fc3c3ce0b8098e8b19390245c4a79
+      size: 2620
+      isexec: true
     outs:
     - path: artifacts/accuracy.json
       hash: md5
-      md5: 3b7dab84a86ad5a72595a74a3a15f1ed
+      md5: 53730ccd81d39d5b023b80aee3d0cf4d
       size: 36
+      isexec: true
     - path: models/sentiment-model.pkl
       hash: md5
-      md5: a2251bca024b67648cac6ab4ef6cdf27
-      size: 12328
+      md5: 8652717f6a943326053c69be082821ff
+      size: 51840
+      isexec: true
   evaluate:
-    cmd: python src/evaluate.py --model models/sentiment-model.pkl --data data/processed/preprocessed_data.pkl
-      --output artifacts/evaluation.json
+    cmd: python src/evaluate.py --model models/sentiment-model-without-vectorizer.pkl
+      --data data/processed/preprocessed_data.pkl --output artifacts/evaluation.json
     deps:
     - path: data/processed/preprocessed_data.pkl
       hash: md5
-      md5: 18158d9d3455b1ee63466d305594d351
+      md5: 64c81e0f77eacdce6f96dfedb702bb6b
       size: 10231518
-    - path: models/sentiment-model.pkl
+      isexec: true
+    - path: models/sentiment-model-without-vectorizer.pkl
       hash: md5
-      md5: a2251bca024b67648cac6ab4ef6cdf27
+      md5: 2d45586a252ede1086c77d609c28950c
       size: 12328
+      isexec: true
     - path: src/evaluate.py
       hash: md5
-      md5: 202ac46a81b953b2da8eb8be718f014c
-      size: 1860
+      md5: ec654af8f6cfef7a0e3eb7b14b0dee21
+      size: 1862
+      isexec: true
     outs:
     - path: artifacts/evaluation.json
       hash: md5
-      md5: 23ad4fa416a8e3b35c87700d14f409ef
+      md5: bb86df87b33ce5b07844e0dd26c4e142
       size: 109
+      isexec: true
