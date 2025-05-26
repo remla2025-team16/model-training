@@ -14,7 +14,7 @@ def process(
     # preprocessed_filename: str = "preprocessed_data.pkl"
 ) -> str:
     """
-    Call data_preprocessing to generate train/test splits and save both the
+    Call data_preprocessing to generate train/tests splits and save both the
     fitted CountVectorizer and the split datasets as pickle files.
 
     Args:

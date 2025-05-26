@@ -12,7 +12,7 @@ def evaluate(
     output_path: str
 ) -> str:
     """
-    Evaluate the trained model on the test set, save selected metrics, and copy the model artifact.
+    Evaluate the trained model on the tests set, save selected metrics, and copy the model artifact.
     """
     model = joblib.load(model_path)
 
@@ -43,7 +43,7 @@ def evaluate(
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description="Evaluate trained model on test set and save metrics"
+        description="Evaluate trained model on tests set and save metrics"
     )
     parser.add_argument(
         "--model", "-m",

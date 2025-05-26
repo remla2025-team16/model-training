@@ -3,3 +3,5 @@ scikit-learn
 joblib
 dvc
 dvc-gdrive
+pytest
+pytest-cov
