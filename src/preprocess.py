@@ -28,7 +28,6 @@ def process(
     Returns:
         Path to the pickle file containing the preprocessed data dict.
     """
-    import os
 
     # ensure artifacts directory exists
     os.makedirs(artifacts_dir, exist_ok=True)

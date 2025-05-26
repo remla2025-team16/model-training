@@ -11,8 +11,8 @@ stages:
       isexec: true
     - path: src/preprocess.py
       hash: md5
-      md5: d984badbcffc5bf661b36e1d6273ad3d
-      size: 2204
+      md5: b1806c8d657f25469b353f5befa35e72
+      size: 2190
       isexec: true
     outs:
     - path: artifacts/c1_BoW_Sentiment_Model.pkl
@@ -42,8 +42,8 @@ stages:
       isexec: true
     - path: src/train.py
       hash: md5
-      md5: 6d4fc3c3ce0b8098e8b19390245c4a79
-      size: 2620
+      md5: 5080cfb149defd7ce7972a5e9330c9ec
+      size: 2618
       isexec: true
     outs:
     - path: artifacts/accuracy.json
@@ -80,4 +80,28 @@ stages:
       hash: md5
       md5: bb86df87b33ce5b07844e0dd26c4e142
       size: 109
+      isexec: true
+  test:
+    cmd: ./run_all_test.bash
+    deps:
+    - path: requirements.txt
+      hash: md5
+      md5: 6245eefe01dd7a0b57e68d3f90027f80
+      size: 90
+      isexec: true
+    - path: src/
+      hash: md5
+      md5: d442f3f5c2db56e710e2c7f8148404b6.dir
+      size: 9540
+      nfiles: 6
+    - path: tests/
+      hash: md5
+      md5: 9cfdc87b8682437851a43b986b350069.dir
+      size: 33136
+      nfiles: 17
+    outs:
+    - path: metrics/test_metrics.json
+      hash: md5
+      md5: f0772ed788a13de57500235ea72aa56d
+      size: 48
       isexec: true

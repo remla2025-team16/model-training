@@ -2,7 +2,32 @@ import random
 import nltk
 from nltk.corpus import wordnet
 import unicodedata
+import joblib
+import os
+import requests
 
+
+MODEL_PATH = os.getenv("MODEL_PATH", "models/sentiment-model.pkl")
+
+if not os.path.isfile(MODEL_PATH):
+    MODEL_PATH = "/mnt/c/Users/prath/Documents/Uni(Tudelft)/MSc/Year1/q4/CS4295/model-training/models/sentiment-model.pkl"
+
+
+print(MODEL_PATH)
+
+MODEL_URL  = os.getenv("MODEL_URL", None)
+if MODEL_URL and not os.path.isfile(MODEL_PATH):
+    import requests
+    resp = requests.get(MODEL_URL)
+    resp.raise_for_status()
+    with open(MODEL_PATH, "wb") as f:
+        f.write(resp.content)
+
+pipeline = joblib.load(MODEL_PATH)
+
+
+def return_model():
+    return pipeline
 
 def get_synonyms(word: str):
     synsets = wordnet.synsets(word)

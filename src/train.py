@@ -41,8 +41,6 @@ def train(input_path: str, model_path: str, metrics_path: str, vectorizer_path: 
     else:
         joblib.dump(pipeline, model_path)
 
-
-
     with open(metrics_path, "w") as f:
         json.dump({"accuracy": acc}, f, indent=2)
     print(f"Accuracy: {acc:.4f}")

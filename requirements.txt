@@ -6,3 +6,5 @@ dvc-gdrive
 pytest
 pytest-cov
 mutmut
+pytest-benchmark
+psutil

@@ -29,3 +29,11 @@ stages:
     - src/evaluate.py
     outs:
     - artifacts/evaluation.json
+  test:
+    cmd: ./run_all_test.bash
+    deps:
+    - src/
+    - tests/
+    - requirements.txt
+    metrics:
+      - metrics/test_metrics.json
