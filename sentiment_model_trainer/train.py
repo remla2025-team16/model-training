@@ -1,13 +1,14 @@
-import pandas as pd
-import os
-import joblib
-import json
 import argparse
+import json
+import os
 
+import joblib
+import pandas as pd
 from libml.preprocessing import build_pipeline
 from sklearn.metrics import accuracy_score
 
-def train(input_path: str, model_path: str, metrics_path: str, vectorizer_path: str = None ):
+
+def train(input_path: str, model_path: str, metrics_path: str, vectorizer_path: str = None):
     """
     Train a sentiment analysis model using a pipeline that includes
     preprocessing, vectorization, and classification.
@@ -21,23 +22,23 @@ def train(input_path: str, model_path: str, metrics_path: str, vectorizer_path: 
     y_train, y_test = data["y_train"], data["y_test"]
 
     if vectorizer_path:
-        pipeline = build_pipeline(vectorizer_text = False)
+        pipeline = build_pipeline(vectorizer_text=False)
     else:
-        pipeline = build_pipeline(vectorizer_text = True)
+        pipeline = build_pipeline(vectorizer_text=True)
 
     pipeline.fit(X_train, y_train)
     preds = pipeline.predict(X_test)
     acc = accuracy_score(y_test, preds)
 
-    #Save 2 models if vectorizer is provided
+    # Save 2 models if vectorizer is provided
     if vectorizer_path:
         print("Vectorizer provided, saving two models: one with and one without vectorizer.")
-        joblib.dump(pipeline, model_path.replace(".pkl","-without-vectorizer.pkl")) #model without vectorizer
-
+        # model without vectorizer
+        joblib.dump(pipeline, model_path.replace(".pkl", "-without-vectorizer.pkl"))
         # Load the vectorizer and insert it into the pipeline for 2nd model
         vectorizer = joblib.load(vectorizer_path)
         pipeline.steps.insert(0, ("vectorizer", vectorizer))
-        joblib.dump(pipeline, model_path) #model with vectorizer
+        joblib.dump(pipeline, model_path)  # model with vectorizer
     else:
         joblib.dump(pipeline, model_path)
 

@@ -5,7 +5,7 @@ from tests.utils_test import replace_random_synonyms, normalize_text, return_mod
 pipeline = return_model()
 
 
-#make this something that user can add/override
+# make this something that user can add/override
 @pytest.mark.parametrize("text", [
     "The food was absolutely wonderful, and the service was outstanding!",
     "I hated the wait time, but the pasta was delicious.",

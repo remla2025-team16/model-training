@@ -1,11 +1,11 @@
-import os
-import tempfile
-import pickle
 import json
+import os
+import pickle
+import tempfile
+
 import joblib
-import pytest
-import numpy as np
 import pandas as pd
+import pytest
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.pipeline import Pipeline
 
@@ -40,7 +40,6 @@ def fake_vectorizer():
 
 @pytest.fixture
 def fake_preprocessed_data_with_vectorizer(fake_preprocessed_data, fake_vectorizer):
-
     indata = pd.read_pickle(fake_preprocessed_data)
     X_train, X_test = indata["X_train"], indata["X_test"]
     y_train, y_test = indata["y_train"], indata["y_test"]
@@ -58,7 +57,6 @@ def fake_preprocessed_data_with_vectorizer(fake_preprocessed_data, fake_vectoriz
             pickle.dump(data, f)
         yield tmp.name
     os.remove(tmp.name)
-
 
 
 def test_train_without_vectorizer(fake_preprocessed_data):
@@ -86,14 +84,11 @@ def test_train_without_vectorizer(fake_preprocessed_data):
         assert 0.0 <= metrics["accuracy"] <= 1.0
 
 
-
-
 def test_train_with_vectorizer(fake_preprocessed_data_with_vectorizer, fake_vectorizer):
     with tempfile.TemporaryDirectory() as tmpdir:
         model_path = os.path.join(tmpdir, "model.pkl")
         metrics_path = os.path.join(tmpdir, "metrics.json")
         model_no_vec_path = model_path.replace(".pkl", "-without-vectorizer.pkl")
-
 
         train(
             input_path=fake_preprocessed_data_with_vectorizer,

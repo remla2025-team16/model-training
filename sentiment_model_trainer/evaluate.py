@@ -1,15 +1,16 @@
-import os
-import json
-import pickle
 import argparse
-import joblib
+import json
+import os
+import pickle
 
+import joblib
 from sklearn.metrics import accuracy_score, precision_score, recall_score
 
+
 def evaluate(
-    model_path: str, 
-    data_path: str, 
-    output_path: str
+        model_path: str,
+        data_path: str,
+        output_path: str
 ) -> str:
     """
     Evaluate the trained model on the tests set, save selected metrics, and copy the model artifact.
@@ -22,14 +23,14 @@ def evaluate(
     y_test = data["y_test"]
 
     y_pred = model.predict(X_test)
-    accuracy  = accuracy_score(y_test, y_pred)
+    accuracy = accuracy_score(y_test, y_pred)
     precision = precision_score(y_test, y_pred, average="weighted")
-    recall    = recall_score(y_test, y_pred, average="weighted")
+    recall = recall_score(y_test, y_pred, average="weighted")
 
     metrics = {
-        "accuracy":  accuracy,
+        "accuracy": accuracy,
         "precision": precision,
-        "recall":    recall
+        "recall": recall
     }
 
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
@@ -40,6 +41,7 @@ def evaluate(
     print(f"Test Precision: {precision:.4f}")
     print(f"Test Recall   : {recall:.4f}")
     print(f"Metrics saved to: {output_path}")
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(

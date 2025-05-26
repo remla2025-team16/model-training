@@ -1,11 +1,9 @@
-import random
-import nltk
-from nltk.corpus import wordnet
-import unicodedata
-import joblib
 import os
-import requests
+import random
+import unicodedata
 
+import joblib
+from nltk.corpus import wordnet
 
 MODEL_PATH = os.getenv("MODEL_PATH", "models/sentiment-model.pkl")
 
@@ -14,9 +12,10 @@ if not os.path.isfile(MODEL_PATH):
 
 print(MODEL_PATH)
 
-MODEL_URL  = os.getenv("MODEL_URL", None)
+MODEL_URL = os.getenv("MODEL_URL", None)
 if MODEL_URL and not os.path.isfile(MODEL_PATH):
     import requests
+
     resp = requests.get(MODEL_URL)
     resp.raise_for_status()
     with open(MODEL_PATH, "wb") as f:
@@ -28,6 +27,7 @@ pipeline = joblib.load(MODEL_PATH)
 def return_model():
     return pipeline
 
+
 def get_synonyms(word: str):
     synsets = wordnet.synsets(word)
     synonyms = set()
@@ -37,6 +37,7 @@ def get_synonyms(word: str):
             if name.lower() != word.lower():
                 synonyms.add(name)
     return list(synonyms)
+
 
 def replace_random_synonyms(sentence: str, max_replacements: int = 2) -> str:
     tokens = sentence.split()
@@ -51,8 +52,8 @@ def replace_random_synonyms(sentence: str, max_replacements: int = 2) -> str:
             tokens[idx] = random.choice(syns)
     return " ".join(tokens)
 
-def normalize_text(text: str) -> str:
 
+def normalize_text(text: str) -> str:
     text = text.lower()
     text = unicodedata.normalize("NFKD", text)
     text = "".join([c for c in text if not unicodedata.combining(c)])

@@ -1,10 +1,11 @@
 import os
-import tempfile
 import pickle
-import pytest
-import pandas as pd
+import tempfile
 
-from  sentiment_model_trainer.preprocess import process
+import pandas as pd
+import pytest
+
+from sentiment_model_trainer.preprocess import process
 
 
 @pytest.fixture
@@ -17,6 +18,7 @@ def sample_tsv():
         data.to_csv(tmp.name, sep='\t', index=False)
         yield tmp.name
     os.remove(tmp.name)
+
 
 def test_process_function(sample_tsv):
     with tempfile.TemporaryDirectory() as tmpdir:
@@ -45,4 +47,3 @@ def test_process_function(sample_tsv):
 
         assert len(data["X_train"]) > 0
         assert len(data["X_test"]) > 0
-

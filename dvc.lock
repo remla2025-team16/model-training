@@ -96,12 +96,12 @@ stages:
       nfiles: 7
     - path: tests/
       hash: md5
-      md5: 0964b1ea3906266370e14e71ad56e676.dir
+      md5: 84b8c8150122f98da646fd1bc54172e8.dir
       size: 56823
       nfiles: 20
     outs:
     - path: metrics/test_metrics.json
       hash: md5
-      md5: 6663f483a3efd8038e9c4557aa7b7255
-      size: 141
+      md5: c9b7106e0e7330245d4b117796ef6e19
+      size: 146
       isexec: true
