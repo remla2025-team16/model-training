@@ -4,7 +4,7 @@ import pickle
 import pytest
 import pandas as pd
 
-from src.preprocess import process
+from  sentiment_model_trainer.preprocess import process
 
 
 @pytest.fixture
@@ -30,7 +30,6 @@ def test_process_function(sample_tsv):
             artifacts_dir=tmpdir,
             vectorizer_filename=vectorizer_filename
         )
-
 
         assert returned_path == preprocessed_path
         assert os.path.exists(preprocessed_path)

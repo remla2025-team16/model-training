@@ -9,8 +9,7 @@ import pandas as pd
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.pipeline import Pipeline
 
-from src.train import train
-
+from sentiment_model_trainer.train import train
 
 
 @pytest.fixture

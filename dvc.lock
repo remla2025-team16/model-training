@@ -1,7 +1,7 @@
 schema: '2.0'
 stages:
   preprocess:
-    cmd: python src/preprocess.py --input data/raw/a1_RestaurantReviews_HistoricDump.tsv
+    cmd: python sentiment_model_trainer/preprocess.py --input data/raw/a1_RestaurantReviews_HistoricDump.tsv
       --output data/processed/preprocessed_data.pkl
     deps:
     - path: data/raw/a1_RestaurantReviews_HistoricDump.tsv
@@ -9,7 +9,7 @@ stages:
       md5: 102f1f4193e0bdebdd6cce7f13e0a839
       size: 54686
       isexec: true
-    - path: src/preprocess.py
+    - path: sentiment_model_trainer/preprocess.py
       hash: md5
       md5: b1806c8d657f25469b353f5befa35e72
       size: 2190
@@ -26,9 +26,9 @@ stages:
       size: 10231518
       isexec: true
   train:
-    cmd: python src/train.py --input data/processed/preprocessed_data.pkl --vectorizer
-      artifacts/c1_BoW_Sentiment_Model.pkl --model models/sentiment-model.pkl --metrics
-      artifacts/accuracy.json
+    cmd: python sentiment_model_trainer/train.py --input data/processed/preprocessed_data.pkl
+      --vectorizer artifacts/c1_BoW_Sentiment_Model.pkl --model models/sentiment-model.pkl
+      --metrics artifacts/accuracy.json
     deps:
     - path: artifacts/c1_BoW_Sentiment_Model.pkl
       hash: md5
@@ -40,7 +40,7 @@ stages:
       md5: 64c81e0f77eacdce6f96dfedb702bb6b
       size: 10231518
       isexec: true
-    - path: src/train.py
+    - path: sentiment_model_trainer/train.py
       hash: md5
       md5: 5080cfb149defd7ce7972a5e9330c9ec
       size: 2618
@@ -57,7 +57,7 @@ stages:
       size: 51840
       isexec: true
   evaluate:
-    cmd: python src/evaluate.py --model models/sentiment-model-without-vectorizer.pkl
+    cmd: python sentiment_model_trainer/evaluate.py --model models/sentiment-model-without-vectorizer.pkl
       --data data/processed/preprocessed_data.pkl --output artifacts/evaluation.json
     deps:
     - path: data/processed/preprocessed_data.pkl
@@ -70,7 +70,7 @@ stages:
       md5: 2d45586a252ede1086c77d609c28950c
       size: 12328
       isexec: true
-    - path: src/evaluate.py
+    - path: sentiment_model_trainer/evaluate.py
       hash: md5
       md5: ec654af8f6cfef7a0e3eb7b14b0dee21
       size: 1862
@@ -89,19 +89,19 @@ stages:
       md5: 6245eefe01dd7a0b57e68d3f90027f80
       size: 90
       isexec: true
-    - path: src/
+    - path: sentiment_model_trainer/
       hash: md5
-      md5: d442f3f5c2db56e710e2c7f8148404b6.dir
-      size: 9540
-      nfiles: 6
+      md5: aa354fe468470ffaf708de646923cc7b.dir
+      size: 13076
+      nfiles: 7
     - path: tests/
       hash: md5
-      md5: 9cfdc87b8682437851a43b986b350069.dir
-      size: 33136
-      nfiles: 17
+      md5: 0964b1ea3906266370e14e71ad56e676.dir
+      size: 56823
+      nfiles: 20
     outs:
     - path: metrics/test_metrics.json
       hash: md5
-      md5: f0772ed788a13de57500235ea72aa56d
-      size: 48
+      md5: 6663f483a3efd8038e9c4557aa7b7255
+      size: 141
       isexec: true

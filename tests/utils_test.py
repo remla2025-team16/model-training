@@ -12,7 +12,6 @@ MODEL_PATH = os.getenv("MODEL_PATH", "models/sentiment-model.pkl")
 if not os.path.isfile(MODEL_PATH):
     MODEL_PATH = "/mnt/c/Users/prath/Documents/Uni(Tudelft)/MSc/Year1/q4/CS4295/model-training/models/sentiment-model.pkl"
 
-
 print(MODEL_PATH)
 
 MODEL_URL  = os.getenv("MODEL_URL", None)
