@@ -1,9 +1,6 @@
-set -e
 echo "=== Running pytest with coverage ==="
 pytest --cov=src --cov-report=term-missing > test_report.txt
-
 COV=$(coverage report | tail -n 1 | awk '{print $4}')
-
 echo ">>> Coverage: ${COV}"
 
 echo "=== Running mutation testing (mutmut) ==="
@@ -12,13 +9,10 @@ MUT_SCORE=$(mutmut results | grep ^Score | awk '{print $2}')
 echo ">>> Mutation Testing Score: ${MUT_SCORE}"
 
 BENCH_LINE=$(grep 'test_inference_latency' test_report.txt)
-
 MIN_LAT=$(echo $BENCH_LINE | awk '{print $2}' | tr -d ',')
 MAX_LAT=$(echo $BENCH_LINE | awk '{print $3}' | tr -d ',')
 MEAN_LAT=$(echo $BENCH_LINE | awk '{print $4}' | tr -d ',')
-
 echo ">>> Latency - Min: $MIN_LAT µs, Max: $MAX_LAT µs, Mean: $MEAN_LAT µs"
-
 
 if [ ! -d "metrics" ]; then
   echo "Creating metrics directory..."
@@ -26,7 +20,6 @@ if [ ! -d "metrics" ]; then
 else
   echo "Metrics directory already exists."
 fi
-
 
 cat <<EOF > metrics/test_metrics.json
 {
