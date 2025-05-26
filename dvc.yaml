@@ -1,0 +1,29 @@
+stages:
+  preprocess:
+    cmd: python src/preprocess.py --input data/raw/a1_RestaurantReviews_HistoricDump.tsv
+      --output data/processed/preprocessed_data.pkl
+    deps:
+    - data/raw/a1_RestaurantReviews_HistoricDump.tsv
+    - src/preprocess.py
+    outs:
+    - data/processed/preprocessed_data.pkl
+  train:
+    cmd: python src/train.py --input data/processed/preprocessed_data.pkl --model
+      models/sentiment-model.pkl --metrics artifacts/accuracy.json
+    deps:
+    - data/processed/preprocessed_data.pkl
+    - src/train.py
+    outs:
+    - models/sentiment-model.pkl
+    metrics:
+    - artifacts/accuracy.json:
+        cache: false
+  evaluate:
+    cmd: python src/evaluate.py --model models/sentiment-model.pkl --data data/processed/preprocessed_data.pkl
+      --output artifacts/evaluation.json
+    deps:
+    - data/processed/preprocessed_data.pkl
+    - models/sentiment-model.pkl
+    - src/evaluate.py
+    outs:
+    - artifacts/evaluation.json
