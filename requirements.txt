@@ -3,3 +3,8 @@ scikit-learn
 joblib
 dvc
 dvc-gdrive
+pytest
+pytest-cov
+mutmut
+pytest-benchmark
+psutil
