@@ -28,3 +28,10 @@ jobs:
       run: |
         flake8 sentiment_model_trainer/ tests/ --max-line-length=100 --ignore=E501,E203,E266,W503,F403,F401 --exclude=.git,__pycache__,build,dist
 
+    - name: Run all tests with coverage
+      run: |
+        pip install coverage
+        coverage run -m pytest
+        coverage report
+        coverage xml
+      
