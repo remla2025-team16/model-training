@@ -1,4 +1,4 @@
-# model-training
+# model-training 7777
 
 **Overview**
 This repository contains the training pipeline for the Restaurant Sentiment Analysis model. It preprocesses data, trains the model, and stores the trained model in a versioned manner for use in the `model-service`. Once the model is trained, upload the model through GitHub Release. The personal contribution can be seen from `ACTIVITY.md`.
