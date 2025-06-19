@@ -9,3 +9,4 @@ mutmut
 pytest-benchmark
 psutil
 coverage-badge
+nltk
