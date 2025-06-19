@@ -8,3 +8,4 @@ pytest-cov
 mutmut
 pytest-benchmark
 psutil
+coverage-badge
