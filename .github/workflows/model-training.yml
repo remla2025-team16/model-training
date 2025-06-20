@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - feat/a4_excel # temp for testing
     paths:
       - 'data/**'
       - 'sentiment_model_trainer/train.py'
@@ -37,6 +38,7 @@ jobs:
 
       - name: Upload Model to GitHub Releases
         uses: softprops/action-gh-release@v2
+        if: github.ref == 'refs/heads/main'
         with:
           files: |
             sentiment-model.pkl
