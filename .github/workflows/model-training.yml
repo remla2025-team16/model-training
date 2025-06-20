@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - feat/a4_excel
     paths:
       - 'data/**'
       - 'sentiment_model_trainer/**'
@@ -38,17 +39,20 @@ jobs:
         run: |
           dvc repro
 
+      - name: Check model exists
+      - run: |
+          if [ ! -f models/sentiment-model.pkl ]; then echo "Model file does not exist. Exiting." exit 1; fi
+
       - name: Set Release Version
         id: set_version
         run: echo "RELEASE_VERSION=$(date +'%Y.%m.%d-%H%M%S')" >> $GITHUB_ENV
 
-
       - name: Upload Model to GitHub Releases
-        if: github.ref == 'refs/heads/main'
+        #if: github.ref == 'refs/heads/main'
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            sentiment-model.pkl
+              models/sentiment-model.pkl
           tag_name: "v${{ env.RELEASE_VERSION }}"
           generate_release_notes: true
         env:
