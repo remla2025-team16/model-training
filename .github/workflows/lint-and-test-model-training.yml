@@ -1,16 +1,12 @@
-# A name for the workflow, which will be displayed in the Actions tab of your GitHub repository.
 name: Lint, Test, and Update Metrics
 
-# This specifies the events that will trigger the workflow.
 on: [push, pull_request]
 
-# Defines the permissions granted to the GITHUB_TOKEN for this workflow.
 permissions:
   contents: write
   pull-requests: write
 
 jobs:
-  # The 'lint' job is responsible for checking the code quality and style.
   lint:
     name: "Code Linting"
     runs-on: ubuntu-latest
@@ -31,14 +27,12 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-pip-
 
-    # Installs dependencies needed for linting, including project-specific ones.
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install pylint flake8
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-    # Runs pylint, which will use a .pylintrc file if it exists in the repo root.
     - name: Run pylint
       run: |
         pylint sentiment_model_trainer/ tests/
@@ -47,7 +41,6 @@ jobs:
       run: |
         flake8 sentiment_model_trainer/ tests/ --max-line-length=100 --ignore=E203,W503 --exclude=.git,__pycache__,build,dist
 
-  # The 'testing' job now runs only for Python 3.12.
   testing:
     name: "Run Tests & Generate Coverage"
     needs: lint
@@ -84,7 +77,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       run: |
-        gh release download --clobber --pattern 'sentiment-model.pkl' -R ${{ github.repository }}
+        gh release download --clobber --pattern 'sentiment-model.pkl' -R ${{ github.repository }} --output models/sentiment-model.pkl
 
     - name: Run tests with coverage
       run: |
