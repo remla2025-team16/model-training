@@ -8,8 +8,12 @@ on:
       - 'data/**'
       - 'sentiment_model_trainer/**'
 
+permissions:
+  contents: write
+
 jobs:
   build:
+    name: Train and Release Model
     runs-on: ubuntu-latest
 
     steps:
@@ -34,22 +38,30 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+
       - name: Train Model with DVC
         run: |
           dvc repro
+
+      - name: Check for model file
+        run: |
+          if [ ! -f "models/sentiment-model.pkl" ]; then
+            echo "Model file 'models/sentiment-model.pkl' not found after 'dvc repro'."
+            exit 1
+          fi
+          echo "Model file found."
 
       - name: Set Release Version
         id: set_version
         run: echo "RELEASE_VERSION=$(date +'%Y.%m.%d-%H%M%S')" >> $GITHUB_ENV
 
-
-      - name: Upload Model to GitHub Releases
+      - name: Create GitHub Release
         if: github.ref == 'refs/heads/main'
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            sentiment-model.pkl
+              models/sentiment-model.pkl
           tag_name: "v${{ env.RELEASE_VERSION }}"
           generate_release_notes: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # env:
+        #  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

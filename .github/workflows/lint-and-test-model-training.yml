@@ -31,24 +31,45 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install pylint flake8
+        pip install pylint flake8 anybadge
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-    - name: Run pylint
+    - name: Run pylint and calculate score
       run: |
-        pylint sentiment_model_trainer/ tests/
+        mkdir -p metrics
+        pylint sentiment_model_trainer/ tests/ | tee metrics/pylint_report.txt || true
+        SCORE=$(grep -oP 'Your code has been rated at \K[0-9.]+' metrics/pylint_report.txt | awk '{printf "%.0f", $1 * 10}')
+        echo "PYLINT_SCORE=${SCORE:-0}" >> $GITHUB_ENV
+        echo "Pylint score is ${SCORE:-0}%"
+
+    - name: Create Pylint badge
+      run: |
+        rm -f metrics/pylint.svg
+        anybadge --value=${{ env.PYLINT_SCORE }} --file=metrics/pylint.svg --label=Pylint --color=green
 
     - name: Run flake8
       run: |
         flake8 sentiment_model_trainer/ tests/ --max-line-length=100 --ignore=E203,W503 --exclude=.git,__pycache__,build,dist
 
+    - name: Upload Pylint artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: pylint-metrics
+        path: metrics/
+
   testing:
-    name: "Run Tests & Generate Coverage"
+    name: "Run Tests & Update Metrics"
     needs: lint
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
+
+    - name: Download Pylint metrics from lint job
+      uses: actions/download-artifact@v4
+      with:
+        name: pylint-metrics
+        path: metrics/
 
     - name: Set up Python
       uses: actions/setup-python@v5
@@ -60,7 +81,6 @@ jobs:
       with:
         path: ~/.nltk
         key: ${{ runner.os }}-nltk
-
 
     - name: Cache Pip dependencies
       uses: actions/cache@v4
@@ -80,19 +100,19 @@ jobs:
       run: |
           python -m nltk.downloader wordnet
 
-    - name: Prepare directories
+    - name: Prepare model directory
       run: |
         mkdir -p models
-        mkdir -p metrics
 
     - name: Download Model from Release
       env:
         GH_TOKEN: ${{ github.token }}
       run: |
-        gh release download --clobber --pattern 'sentiment-model.pkl' -R ${{ github.repository }} --output models/sentiment-model.pkl
+        gh release download --clobber --pattern 'sentiment-model.pkl' -R ${{ github.repository }} --output models/sentiment-model.pkl || echo "Model not found, proceeding without it."
 
     - name: Run tests with coverage
       run: |
+        mkdir -p metrics
         pytest --cov=sentiment_model_trainer --cov-report=term-missing | tee metrics/test_report.txt
 
     - name: Create coverage badge
@@ -100,23 +120,21 @@ jobs:
         rm -f metrics/coverage.svg
         coverage-badge -o metrics/coverage.svg
 
-    - name: Upload test artifacts
+    - name: Upload combined test artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: test-metrics
-        path: |
-          metrics/test_report.txt
-          metrics/coverage.svg
+        name: all-metrics
+        path: metrics/
 
     - name: Commit metrics
       if: github.ref == 'refs/heads/main'
       run: |
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
-        git pull --rebase
         git add metrics/
-        # The '|| exit 0' part prevents the step from failing if there are no changes to commit.
-        git commit -m "Update test metrics and coverage badge" || exit 0
-        git push
-
-
+        if git diff-index --quiet HEAD; then
+          echo "No changes in metrics to commit."
+        else
+          git commit -m "docs(metrics): Update code quality and coverage badges"
+          git push
+        fi
