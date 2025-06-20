@@ -54,6 +54,13 @@ jobs:
       with:
         python-version: '3.12'
 
+    - name: Cache NLTK data
+      uses: actions/cache@v4
+      with:
+        path: ~/.nltk
+        key: ${{ runner.os }}-nltk
+
+
     - name: Cache Pip dependencies
       uses: actions/cache@v4
       with:
@@ -67,6 +74,10 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         pip install pytest pytest-cov coverage-badge
+
+    - name: Download NLTK wordnet
+      run: |
+          python -m nltk.downloader wordnet
 
     - name: Prepare directories
       run: |
