@@ -29,11 +29,3 @@ stages:
     - sentiment_model_trainer/evaluate.py
     outs:
     - artifacts/evaluation.json
-  test:
-    cmd: ./run_all_test.bash
-    deps:
-    - sentiment_model_trainer/
-    - tests/
-    - requirements.txt
-    metrics:
-      - metrics/test_metrics.json

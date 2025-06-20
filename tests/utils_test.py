@@ -7,11 +7,6 @@ from nltk.corpus import wordnet
 
 MODEL_PATH = os.getenv("MODEL_PATH", "models/sentiment-model.pkl")
 
-if not os.path.isfile(MODEL_PATH):
-    MODEL_PATH = "/models/sentiment-model.pkl"
-
-print(MODEL_PATH)
-
 MODEL_URL = os.getenv("MODEL_URL", None)
 if MODEL_URL and not os.path.isfile(MODEL_PATH):
     import requests
