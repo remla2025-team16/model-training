@@ -44,6 +44,7 @@ jobs:
 
     - name: Create Pylint badge
       run: |
+        rm -f metrics/pylint.svg
         anybadge --value=${{ env.PYLINT_SCORE }} --file=metrics/pylint.svg --label=Pylint --color=green
 
     - name: Run flake8
