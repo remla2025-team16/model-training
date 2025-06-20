@@ -1,10 +1,10 @@
 ============================= test session starts ==============================
-platform linux -- Python 3.13.2, pytest-8.3.4, pluggy-1.5.0
+platform linux -- Python 3.12.11, pytest-8.4.1, pluggy-1.6.0
 benchmark: 5.1.0 (defaults: timer=time.perf_counter disable_gc=False min_rounds=5 min_time=0.000005 max_time=1.0 calibration_precision=10 warmup=False warmup_iterations=100000)
-rootdir: /mnt/c/Users/prath/Documents/Uni(Tudelft)/MSc/Year1/q4/CS4295/model-training
+rootdir: /home/runner/work/model-training/model-training
 configfile: pytest.ini
 testpaths: tests
-plugins: benchmark-5.1.0, hydra-core-1.3.2, cov-6.1.1
+plugins: benchmark-5.1.0, hydra-core-1.3.2, cov-6.2.1
 collected 10 items
 
 tests/test_feature_cost.py .                                             [ 10%]
@@ -17,7 +17,7 @@ tests/test_performance.py ..                                             [100%]
 =================================== FAILURES ===================================
 ________________________ test_prometheus_metrics_format ________________________
 
-self = <urllib3.connection.HTTPConnection object at 0x7d9b9f506900>
+self = <urllib3.connection.HTTPConnection object at 0x7f84e1353950>
 
     def _new_conn(self) -> socket.socket:
         """Establish a socket connection and set nodelay settings on it.
@@ -32,9 +32,9 @@ self = <urllib3.connection.HTTPConnection object at 0x7d9b9f506900>
                 socket_options=self.socket_options,
             )
 
-/home/prat/miniconda3/envs/remala/lib/python3.13/site-packages/urllib3/connection.py:198: 
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/urllib3/connection.py:198: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-/home/prat/miniconda3/envs/remala/lib/python3.13/site-packages/urllib3/util/connection.py:85: in create_connection
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/urllib3/util/connection.py:85: in create_connection
     raise err
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
@@ -90,13 +90,13 @@ socket_options = [(6, 1, 1)]
 >               sock.connect(sa)
 E               ConnectionRefusedError: [Errno 111] Connection refused
 
-/home/prat/miniconda3/envs/remala/lib/python3.13/site-packages/urllib3/util/connection.py:73: ConnectionRefusedError
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/urllib3/util/connection.py:73: ConnectionRefusedError
 
 The above exception was the direct cause of the following exception:
 
-self = <urllib3.connectionpool.HTTPConnectionPool object at 0x7d9b9f506270>
+self = <urllib3.connectionpool.HTTPConnectionPool object at 0x7f84e1376ab0>
 method = 'GET', url = '/metrics', body = None
-headers = {'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'}
+headers = {'User-Agent': 'python-requests/2.32.4', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'}
 retries = Retry(total=0, connect=None, read=False, redirect=None, status=None)
 redirect = False, assert_same_host = False
 timeout = Timeout(connect=None, read=None, total=None), pool_timeout = None
@@ -316,23 +316,24 @@ http_tunnel_required = False, err = None, clean_exit = False
                 **response_kw,
             )
 
-/home/prat/miniconda3/envs/remala/lib/python3.13/site-packages/urllib3/connectionpool.py:787: 
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/urllib3/connectionpool.py:787: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-/home/prat/miniconda3/envs/remala/lib/python3.13/site-packages/urllib3/connectionpool.py:493: in _make_request
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/urllib3/connectionpool.py:493: in _make_request
     conn.request(
-/home/prat/miniconda3/envs/remala/lib/python3.13/site-packages/urllib3/connection.py:445: in request
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/urllib3/connection.py:494: in request
     self.endheaders()
-/home/prat/miniconda3/envs/remala/lib/python3.13/http/client.py:1333: in endheaders
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/http/client.py:1333: in endheaders
     self._send_output(message_body, encode_chunked=encode_chunked)
-/home/prat/miniconda3/envs/remala/lib/python3.13/http/client.py:1093: in _send_output
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/http/client.py:1093: in _send_output
     self.send(msg)
-/home/prat/miniconda3/envs/remala/lib/python3.13/http/client.py:1037: in send
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/http/client.py:1037: in send
     self.connect()
-/home/prat/miniconda3/envs/remala/lib/python3.13/site-packages/urllib3/connection.py:276: in connect
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/urllib3/connection.py:325: in connect
     self.sock = self._new_conn()
+                ^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <urllib3.connection.HTTPConnection object at 0x7d9b9f506900>
+self = <urllib3.connection.HTTPConnection object at 0x7f84e1353950>
 
     def _new_conn(self) -> socket.socket:
         """Establish a socket connection and set nodelay settings on it.
@@ -358,13 +359,13 @@ self = <urllib3.connection.HTTPConnection object at 0x7d9b9f506900>
 >           raise NewConnectionError(
                 self, f"Failed to establish a new connection: {e}"
             ) from e
-E           urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7d9b9f506900>: Failed to establish a new connection: [Errno 111] Connection refused
+E           urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7f84e1353950>: Failed to establish a new connection: [Errno 111] Connection refused
 
-/home/prat/miniconda3/envs/remala/lib/python3.13/site-packages/urllib3/connection.py:213: NewConnectionError
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/urllib3/connection.py:213: NewConnectionError
 
 The above exception was the direct cause of the following exception:
 
-self = <requests.adapters.HTTPAdapter object at 0x7d9b9f6add10>
+self = <requests.adapters.HTTPAdapter object at 0x7f84e1376c00>
 request = <PreparedRequest [GET]>, stream = False
 timeout = Timeout(connect=None, read=None, total=None), verify = True
 cert = None, proxies = OrderedDict()
@@ -437,17 +438,17 @@ cert = None, proxies = OrderedDict()
                 chunked=chunked,
             )
 
-/home/prat/miniconda3/envs/remala/lib/python3.13/site-packages/requests/adapters.py:667: 
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/requests/adapters.py:667: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-/home/prat/miniconda3/envs/remala/lib/python3.13/site-packages/urllib3/connectionpool.py:841: in urlopen
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/urllib3/connectionpool.py:841: in urlopen
     retries = retries.increment(
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
 self = Retry(total=0, connect=None, read=False, redirect=None, status=None)
 method = 'GET', url = '/metrics', response = None
-error = NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7d9b9f506900>: Failed to establish a new connection: [Errno 111] Connection refused')
-_pool = <urllib3.connectionpool.HTTPConnectionPool object at 0x7d9b9f506270>
-_stacktrace = <traceback object at 0x7d9b9f596340>
+error = NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f84e1353950>: Failed to establish a new connection: [Errno 111] Connection refused')
+_pool = <urllib3.connectionpool.HTTPConnectionPool object at 0x7f84e1376ab0>
+_stacktrace = <traceback object at 0x7f84e139d200>
 
     def increment(
         self,
@@ -541,28 +542,34 @@ _stacktrace = <traceback object at 0x7d9b9f596340>
         if new_retry.is_exhausted():
             reason = error or ResponseError(cause)
 >           raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
-E           urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /metrics (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7d9b9f506900>: Failed to establish a new connection: [Errno 111] Connection refused'))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /metrics (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f84e1353950>: Failed to establish a new connection: [Errno 111] Connection refused'))
 
-/home/prat/miniconda3/envs/remala/lib/python3.13/site-packages/urllib3/util/retry.py:519: MaxRetryError
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/urllib3/util/retry.py:519: MaxRetryError
 
 During handling of the above exception, another exception occurred:
 
     def test_prometheus_metrics_format():
 >       response = requests.get("http://localhost:8080/metrics")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/test_monitoring.py:6: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-/home/prat/miniconda3/envs/remala/lib/python3.13/site-packages/requests/api.py:73: in get
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/requests/api.py:73: in get
     return request("get", url, params=params, **kwargs)
-/home/prat/miniconda3/envs/remala/lib/python3.13/site-packages/requests/api.py:59: in request
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/requests/api.py:59: in request
     return session.request(method=method, url=url, **kwargs)
-/home/prat/miniconda3/envs/remala/lib/python3.13/site-packages/requests/sessions.py:589: in request
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/requests/sessions.py:589: in request
     resp = self.send(prep, **send_kwargs)
-/home/prat/miniconda3/envs/remala/lib/python3.13/site-packages/requests/sessions.py:703: in send
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/requests/sessions.py:703: in send
     r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <requests.adapters.HTTPAdapter object at 0x7d9b9f6add10>
+self = <requests.adapters.HTTPAdapter object at 0x7f84e1376c00>
 request = <PreparedRequest [GET]>, stream = False
 timeout = Timeout(connect=None, read=None, total=None), verify = True
 cert = None, proxies = OrderedDict()
@@ -655,12 +662,12 @@ cert = None, proxies = OrderedDict()
                 raise SSLError(e, request=request)
     
 >           raise ConnectionError(e, request=request)
-E           requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /metrics (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7d9b9f506900>: Failed to establish a new connection: [Errno 111] Connection refused'))
+E           requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /metrics (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f84e1353950>: Failed to establish a new connection: [Errno 111] Connection refused'))
 
-/home/prat/miniconda3/envs/remala/lib/python3.13/site-packages/requests/adapters.py:700: ConnectionError
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/requests/adapters.py:700: ConnectionError
 _________________________ test_custom_metrics_present __________________________
 
-self = <urllib3.connection.HTTPConnection object at 0x7d9b9f599d10>
+self = <urllib3.connection.HTTPConnection object at 0x7f84e13d56a0>
 
     def _new_conn(self) -> socket.socket:
         """Establish a socket connection and set nodelay settings on it.
@@ -675,9 +682,9 @@ self = <urllib3.connection.HTTPConnection object at 0x7d9b9f599d10>
                 socket_options=self.socket_options,
             )
 
-/home/prat/miniconda3/envs/remala/lib/python3.13/site-packages/urllib3/connection.py:198: 
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/urllib3/connection.py:198: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-/home/prat/miniconda3/envs/remala/lib/python3.13/site-packages/urllib3/util/connection.py:85: in create_connection
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/urllib3/util/connection.py:85: in create_connection
     raise err
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
@@ -733,13 +740,13 @@ socket_options = [(6, 1, 1)]
 >               sock.connect(sa)
 E               ConnectionRefusedError: [Errno 111] Connection refused
 
-/home/prat/miniconda3/envs/remala/lib/python3.13/site-packages/urllib3/util/connection.py:73: ConnectionRefusedError
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/urllib3/util/connection.py:73: ConnectionRefusedError
 
 The above exception was the direct cause of the following exception:
 
-self = <urllib3.connectionpool.HTTPConnectionPool object at 0x7d9b9f599a90>
+self = <urllib3.connectionpool.HTTPConnectionPool object at 0x7f84e13d5b20>
 method = 'GET', url = '/metrics', body = None
-headers = {'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'}
+headers = {'User-Agent': 'python-requests/2.32.4', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'}
 retries = Retry(total=0, connect=None, read=False, redirect=None, status=None)
 redirect = False, assert_same_host = False
 timeout = Timeout(connect=None, read=None, total=None), pool_timeout = None
@@ -959,23 +966,24 @@ http_tunnel_required = False, err = None, clean_exit = False
                 **response_kw,
             )
 
-/home/prat/miniconda3/envs/remala/lib/python3.13/site-packages/urllib3/connectionpool.py:787: 
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/urllib3/connectionpool.py:787: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-/home/prat/miniconda3/envs/remala/lib/python3.13/site-packages/urllib3/connectionpool.py:493: in _make_request
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/urllib3/connectionpool.py:493: in _make_request
     conn.request(
-/home/prat/miniconda3/envs/remala/lib/python3.13/site-packages/urllib3/connection.py:445: in request
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/urllib3/connection.py:494: in request
     self.endheaders()
-/home/prat/miniconda3/envs/remala/lib/python3.13/http/client.py:1333: in endheaders
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/http/client.py:1333: in endheaders
     self._send_output(message_body, encode_chunked=encode_chunked)
-/home/prat/miniconda3/envs/remala/lib/python3.13/http/client.py:1093: in _send_output
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/http/client.py:1093: in _send_output
     self.send(msg)
-/home/prat/miniconda3/envs/remala/lib/python3.13/http/client.py:1037: in send
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/http/client.py:1037: in send
     self.connect()
-/home/prat/miniconda3/envs/remala/lib/python3.13/site-packages/urllib3/connection.py:276: in connect
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/urllib3/connection.py:325: in connect
     self.sock = self._new_conn()
+                ^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <urllib3.connection.HTTPConnection object at 0x7d9b9f599d10>
+self = <urllib3.connection.HTTPConnection object at 0x7f84e13d56a0>
 
     def _new_conn(self) -> socket.socket:
         """Establish a socket connection and set nodelay settings on it.
@@ -1001,13 +1009,13 @@ self = <urllib3.connection.HTTPConnection object at 0x7d9b9f599d10>
 >           raise NewConnectionError(
                 self, f"Failed to establish a new connection: {e}"
             ) from e
-E           urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7d9b9f599d10>: Failed to establish a new connection: [Errno 111] Connection refused
+E           urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7f84e13d56a0>: Failed to establish a new connection: [Errno 111] Connection refused
 
-/home/prat/miniconda3/envs/remala/lib/python3.13/site-packages/urllib3/connection.py:213: NewConnectionError
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/urllib3/connection.py:213: NewConnectionError
 
 The above exception was the direct cause of the following exception:
 
-self = <requests.adapters.HTTPAdapter object at 0x7d9b9f58a3f0>
+self = <requests.adapters.HTTPAdapter object at 0x7f84e1376a80>
 request = <PreparedRequest [GET]>, stream = False
 timeout = Timeout(connect=None, read=None, total=None), verify = True
 cert = None, proxies = OrderedDict()
@@ -1080,17 +1088,17 @@ cert = None, proxies = OrderedDict()
                 chunked=chunked,
             )
 
-/home/prat/miniconda3/envs/remala/lib/python3.13/site-packages/requests/adapters.py:667: 
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/requests/adapters.py:667: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-/home/prat/miniconda3/envs/remala/lib/python3.13/site-packages/urllib3/connectionpool.py:841: in urlopen
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/urllib3/connectionpool.py:841: in urlopen
     retries = retries.increment(
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
 self = Retry(total=0, connect=None, read=False, redirect=None, status=None)
 method = 'GET', url = '/metrics', response = None
-error = NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7d9b9f599d10>: Failed to establish a new connection: [Errno 111] Connection refused')
-_pool = <urllib3.connectionpool.HTTPConnectionPool object at 0x7d9b9f599a90>
-_stacktrace = <traceback object at 0x7d9b9ce169c0>
+error = NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f84e13d56a0>: Failed to establish a new connection: [Errno 111] Connection refused')
+_pool = <urllib3.connectionpool.HTTPConnectionPool object at 0x7f84e13d5b20>
+_stacktrace = <traceback object at 0x7f84df1e3a00>
 
     def increment(
         self,
@@ -1184,28 +1192,34 @@ _stacktrace = <traceback object at 0x7d9b9ce169c0>
         if new_retry.is_exhausted():
             reason = error or ResponseError(cause)
 >           raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
-E           urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /metrics (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7d9b9f599d10>: Failed to establish a new connection: [Errno 111] Connection refused'))
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /metrics (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f84e13d56a0>: Failed to establish a new connection: [Errno 111] Connection refused'))
 
-/home/prat/miniconda3/envs/remala/lib/python3.13/site-packages/urllib3/util/retry.py:519: MaxRetryError
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/urllib3/util/retry.py:519: MaxRetryError
 
 During handling of the above exception, another exception occurred:
 
     def test_custom_metrics_present():
 >       response = requests.get("http://localhost:8080/metrics")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 tests/test_monitoring.py:13: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-/home/prat/miniconda3/envs/remala/lib/python3.13/site-packages/requests/api.py:73: in get
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/requests/api.py:73: in get
     return request("get", url, params=params, **kwargs)
-/home/prat/miniconda3/envs/remala/lib/python3.13/site-packages/requests/api.py:59: in request
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/requests/api.py:59: in request
     return session.request(method=method, url=url, **kwargs)
-/home/prat/miniconda3/envs/remala/lib/python3.13/site-packages/requests/sessions.py:589: in request
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/requests/sessions.py:589: in request
     resp = self.send(prep, **send_kwargs)
-/home/prat/miniconda3/envs/remala/lib/python3.13/site-packages/requests/sessions.py:703: in send
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/requests/sessions.py:703: in send
     r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <requests.adapters.HTTPAdapter object at 0x7d9b9f58a3f0>
+self = <requests.adapters.HTTPAdapter object at 0x7f84e1376a80>
 request = <PreparedRequest [GET]>, stream = False
 timeout = Timeout(connect=None, read=None, total=None), verify = True
 cert = None, proxies = OrderedDict()
@@ -1298,9 +1312,9 @@ cert = None, proxies = OrderedDict()
                 raise SSLError(e, request=request)
     
 >           raise ConnectionError(e, request=request)
-E           requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /metrics (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7d9b9f599d10>: Failed to establish a new connection: [Errno 111] Connection refused'))
+E           requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /metrics (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f84e13d56a0>: Failed to establish a new connection: [Errno 111] Connection refused'))
 
-/home/prat/miniconda3/envs/remala/lib/python3.13/site-packages/requests/adapters.py:700: ConnectionError
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/requests/adapters.py:700: ConnectionError
 _ test_synonym_invariance[The food was absolutely wonderful, and the service was outstanding!] _
 
 text = 'The food was absolutely wonderful, and the service was outstanding!'
@@ -1329,16 +1343,17 @@ text = 'The food was absolutely wonderful, and the service was outstanding!'
                 f"Even after repair, Δ={abs(repaired_prob - baseline_prob):.3f} "
                 f"is too large for '{text}' → '{repaired}'."
             )
-E           AssertionError: Even after repair, Δ=1.000 is too large for 'The food was absolutely wonderful, and the service was outstanding!' → 'the nutrient was absolutely wonderful, and the service was outstanding!'.
+E           AssertionError: Even after repair, Δ=1.000 is too large for 'The food was absolutely wonderful, and the service was outstanding!' → 'the intellectual nourishment make up absolutely wonderful, and the service was outstanding!'.
 E           assert np.int64(1) <= 0.1
 E            +  where np.int64(1) = abs((np.int64(1) - np.int64(0)))
 
 tests/test_mutamorphic.py:29: AssertionError
 ----------------------------- Captured stdout call -----------------------------
 baseline_prob = 0
-transformed = The nutrient was absolutely wonderful, and the service was outstanding!
+transformed = The intellectual nourishment make up absolutely wonderful, and the service was outstanding!
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.12.11-final-0 _______________
 
----------- coverage: platform linux, python 3.13.2-final-0 -----------
 Name                                    Stmts   Miss  Cover   Missing
 ---------------------------------------------------------------------
 sentiment_model_trainer/__init__.py         0      0   100%
@@ -1348,18 +1363,19 @@ sentiment_model_trainer/train.py           38      7    82%   52-74
 ---------------------------------------------------------------------
 TOTAL                                      92     44    52%
 
-
------------------------------------------------ benchmark 'inference_latency': 1 tests -----------------------------------------------
-Name (time in us)               Min           Max      Mean      StdDev    Median      IQR  Outliers  OPS (Kops/s)  Rounds  Iterations
---------------------------------------------------------------------------------------------------------------------------------------
-test_inference_latency     170.3470  108,254.3300  282.5544  2,858.7967  185.9280  36.1737     1;120        3.5391    1429           1
---------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------- benchmark 'inference_latency': 1 tests -------------------------------------------
+Name (time in us)               Min       Max      Mean   StdDev    Median      IQR  Outliers  OPS (Kops/s)  Rounds  Iterations
+-------------------------------------------------------------------------------------------------------------------------------
+test_inference_latency     194.7880  525.9630  207.2602  15.1059  201.9110  12.4740    155;47        4.8249    1403           1
+-------------------------------------------------------------------------------------------------------------------------------
 
 Legend:
   Outliers: 1 Standard Deviation from Mean; 1.5 IQR (InterQuartile Range) from 1st Quartile and 3rd Quartile.
   OPS: Operations Per Second, computed as 1 / Mean
 =========================== short test summary info ============================
-FAILED tests/test_monitoring.py::test_prometheus_metrics_format - requests.ex...
-FAILED tests/test_monitoring.py::test_custom_metrics_present - requests.excep...
-FAILED tests/test_mutamorphic.py::test_synonym_invariance[The food was absolutely wonderful, and the service was outstanding!]
-========================= 3 failed, 7 passed in 9.67s ==========================
+FAILED tests/test_monitoring.py::test_prometheus_metrics_format - requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /metrics (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f84e1353950>: Failed to establish a new connection: [Errno 111] Connection refused'))
+FAILED tests/test_monitoring.py::test_custom_metrics_present - requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /metrics (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f84e13d56a0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+FAILED tests/test_mutamorphic.py::test_synonym_invariance[The food was absolutely wonderful, and the service was outstanding!] - AssertionError: Even after repair, Δ=1.000 is too large for 'The food was absolutely wonderful, and the service was outstanding!' → 'the intellectual nourishment make up absolutely wonderful, and the service was outstanding!'.
+assert np.int64(1) <= 0.1
+ +  where np.int64(1) = abs((np.int64(1) - np.int64(0)))
+========================= 3 failed, 7 passed in 8.63s ==========================
