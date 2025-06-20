@@ -42,7 +42,7 @@ jobs:
 
     - name: Run pylint
       run: |
-        pylint sentiment_model_trainer/ tests/
+        pylint sentiment_model_trainer/ tests/ 
 
     - name: Run flake8
       run: |
