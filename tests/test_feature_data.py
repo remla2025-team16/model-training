@@ -11,7 +11,11 @@ from sentiment_model_trainer.preprocess import process
 @pytest.fixture
 def sample_tsv():
     data = pd.DataFrame({
-        "Review": ["Great product!", "Terrible experience.", "Average performance", "Loved it", "Hated it"],
+        "Review": ["Great product!",
+                   "Terrible experience.",
+                   "Average performance",
+                   "Loved it",
+                   "Hated it"],
         "Sentiment": [1, 0, 1, 1, 0]
     })
     with tempfile.NamedTemporaryFile(delete=False, suffix=".tsv", mode='w') as tmp:

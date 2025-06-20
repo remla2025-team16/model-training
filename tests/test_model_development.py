@@ -15,7 +15,10 @@ from sentiment_model_trainer.train import train
 @pytest.fixture
 def fake_preprocessed_data():
     data = {
-        "X_train": ["good food", "the food was great", "such a bad service", "disappointed with the pasta and service"],
+        "X_train": ["good food",
+                    "the food was great",
+                    "such a bad service",
+                    "disappointed with the pasta and service"],
         "X_test": ["glad we found this place", "never been more insulted "],
         "y_train": [1, 1, 0, 0],
         "y_test": [1, 0]

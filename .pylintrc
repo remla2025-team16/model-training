@@ -21,6 +21,7 @@ good-names=
 [REPORTS]
 score=yes
 output-format=colorized
+
 [FORMAT]
 max-line-length=100
 max-args=10

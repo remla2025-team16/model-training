@@ -35,4 +35,6 @@ def test_memory_usage_during_inference():
     mem_after = process.memory_info().rss
 
     used = (mem_after - mem_before) / (1024 * 1024)
-    assert used < 50, f"Memory bump too high: {used:.1f} MB"  # some random number, but not too high. Could be tune
+    assert used < 50, f"Memory bump too high: {used:.1f} MB"
+
+    # some random number, but not too high. Could be tune
