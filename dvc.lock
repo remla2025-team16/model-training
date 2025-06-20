@@ -11,8 +11,8 @@ stages:
       isexec: true
     - path: sentiment_model_trainer/preprocess.py
       hash: md5
-      md5: cb5166412dad36d618fac42d1961cc41
-      size: 2153
+      md5: 80415f6f52b98e175f386a2e6c8f9280
+      size: 2313
       isexec: true
     outs:
     - path: artifacts/c1_BoW_Sentiment_Model.pkl

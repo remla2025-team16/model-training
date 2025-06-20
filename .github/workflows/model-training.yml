@@ -4,10 +4,9 @@ on:
   push:
     branches:
       - main
-      - feat/a4_excel # temp for testing
-#    paths:
-#      - 'data/**'
-#      - 'sentiment_model_trainer/train.py'
+    paths:
+      - 'data/**'
+      - 'sentiment_model_trainer/**'
 
 jobs:
   build:
