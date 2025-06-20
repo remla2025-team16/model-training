@@ -4,6 +4,9 @@ import unicodedata
 
 import joblib
 from nltk.corpus import wordnet
+import nltk
+
+nltk.download('wordnet')
 
 MODEL_PATH = os.getenv("MODEL_PATH", "models/sentiment-model.pkl")
 
