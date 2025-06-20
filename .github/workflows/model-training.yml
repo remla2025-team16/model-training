@@ -40,7 +40,6 @@ jobs:
         with:
           files: |
             sentiment-model.pkl
-            sentiment-model-without-vectorizer.pkl
           tag_name: "v${{ env.RELEASE_VERSION }}"
           generate_release_notes: true
         env:
