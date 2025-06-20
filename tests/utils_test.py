@@ -6,7 +6,6 @@ import joblib
 from nltk.corpus import wordnet
 
 MODEL_PATH = os.getenv("MODEL_PATH", "models/sentiment-model.pkl")
-
 MODEL_URL = os.getenv("MODEL_URL", None)
 if MODEL_URL and not os.path.isfile(MODEL_PATH):
     import requests
