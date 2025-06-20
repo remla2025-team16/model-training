@@ -8,3 +8,6 @@ pytest-cov
 mutmut
 pytest-benchmark
 psutil
+coverage-badge
+nltk
+lib-ml @ git+https://github.com/remla2025-team16/lib-ml.git

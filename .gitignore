@@ -196,4 +196,3 @@ mutants/
 coverage_html/
 .idea/
 .coverage
-metrics/

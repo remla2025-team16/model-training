@@ -5,8 +5,8 @@ on:
     branches:
       - main
     paths:
-        - 'data/**'
-        - 'train.py'
+      - 'data/**'
+      - 'sentiment_model_trainer/**'
 
 jobs:
   build:
@@ -14,27 +14,42 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
+          python-version: '3.12'
+
+      - name: Cache Pip dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-3.12-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-3.12-
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Train Model
+      - name: Train Model with DVC
         run: |
-          python train.py 
+          dvc repro
+
+      - name: Set Release Version
+        id: set_version
+        run: echo "RELEASE_VERSION=$(date +'%Y.%m.%d-%H%M%S')" >> $GITHUB_ENV
+
 
       - name: Upload Model to GitHub Releases
-        uses: softprops/action-gh-release@v1
+        if: github.ref == 'refs/heads/main'
+        uses: softprops/action-gh-release@v2
         with:
-          files: model_v${{ env.MODEL_VERSION }}.pkl  # to be changed
-          tag_name: "v${{ env.MODEL_VERSION }}"
+          files: |
+            sentiment-model.pkl
+          tag_name: "v${{ env.RELEASE_VERSION }}"
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -44,6 +44,10 @@ def process(
         vectorizer_input=None
     )
 
+    # ensure preprocessed path is a valid directory
+    preprocessed_dir = os.path.dirname(preprocessed_path)
+    os.makedirs(preprocessed_dir, exist_ok=True)
+
     # save preprocessed splits
     with open(preprocessed_path, "wb") as f:
         pickle.dump({

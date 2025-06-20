@@ -1,0 +1,9 @@
+{
+  "coverage": "51%",
+  "mutation_score": "",
+  "latency": {
+    "min_us": 191.6210,
+    "max_us": 821.9800,
+    "mean_us": 254.1879
+  }
+}

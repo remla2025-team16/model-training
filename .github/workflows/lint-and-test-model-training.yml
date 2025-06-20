@@ -1,37 +1,122 @@
-name: Lint and Test
+name: Lint, Test, and Update Metrics
 
 on: [push, pull_request]
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   lint:
+    name: "Code Linting"
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
-        python-version: '3.10'
+        python-version: '3.12'
+
+    - name: Cache Pip dependencies
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
 
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install pylint flake8 joblib scikit-learn pandas libml
+        pip install pylint flake8
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
     - name: Run pylint
       run: |
-        pylint sentiment_model_trainer/ tests/ --exit-zero
+        pylint sentiment_model_trainer/ tests/
 
     - name: Run flake8
       run: |
-        flake8 sentiment_model_trainer/ tests/ --max-line-length=100 --ignore=E501,E203,E266,W503,F403,F401 --exclude=.git,__pycache__,build,dist
+        flake8 sentiment_model_trainer/ tests/ --max-line-length=100 --ignore=E203,W503 --exclude=.git,__pycache__,build,dist
 
-    # - name: Run all tests with coverage
-    #   run: |
-    #     pip install coverage
-    #     coverage run -m pytest
-    #     coverage report
-    #     coverage xml
-      
+  testing:
+    name: "Run Tests & Generate Coverage"
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+
+    - name: Cache NLTK data
+      uses: actions/cache@v4
+      with:
+        path: ~/.nltk
+        key: ${{ runner.os }}-nltk
+
+
+    - name: Cache Pip dependencies
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-3.12-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-3.12-
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install pytest pytest-cov coverage-badge
+
+    - name: Download NLTK wordnet
+      run: |
+          python -m nltk.downloader wordnet
+
+    - name: Prepare directories
+      run: |
+        mkdir -p models
+        mkdir -p metrics
+
+    - name: Download Model from Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+      run: |
+        gh release download --clobber --pattern 'sentiment-model.pkl' -R ${{ github.repository }} --output models/sentiment-model.pkl
+
+    - name: Run tests with coverage
+      run: |
+        pytest --cov=sentiment_model_trainer --cov-report=term-missing | tee metrics/test_report.txt
+
+    - name: Create coverage badge
+      run: |
+        rm -f metrics/coverage.svg
+        coverage-badge -o metrics/coverage.svg
+
+    - name: Upload test artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-metrics
+        path: |
+          metrics/test_report.txt
+          metrics/coverage.svg
+
+    - name: Commit metrics
+      if: github.ref == 'refs/heads/main'
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git pull --rebase
+        git add metrics/
+        # The '|| exit 0' part prevents the step from failing if there are no changes to commit.
+        git commit -m "Update test metrics and coverage badge" || exit 0
+        git push
+
+

@@ -19,8 +19,6 @@ stages:
     metrics:
     - artifacts/accuracy.json:
         cache: false
-    params:
-    - params.yaml
 
   evaluate:
     cmd: python sentiment_model_trainer/evaluate.py --model models/sentiment-model-without-vectorizer.pkl --data data/processed/preprocessed_data.pkl --output artifacts/evaluation.json
@@ -30,14 +28,3 @@ stages:
     - sentiment_model_trainer/evaluate.py
     outs:
     - artifacts/evaluation.json
-    metrics:
-    - artifacts/evaluation.json
-
-  test:
-    cmd: ./run_all_test.bash
-    deps:
-    - sentiment_model_trainer/
-    - tests/
-    - requirements.txt
-    metrics:
-    - metrics/test_metrics.json
