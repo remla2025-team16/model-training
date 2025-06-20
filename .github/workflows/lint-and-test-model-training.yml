@@ -88,7 +88,7 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
       run: |
-        gh release download v1.0.0 --pattern 'sentiment-model-without-vectorizer.pkl' --output models/sentiment-model.pkl
+        gh release download v1.0.0 --pattern 'sentiment-model.pkl' --output models/sentiment-model.pkl
 
     - name: Run tests with coverage
       run: |

@@ -11,13 +11,13 @@ stages:
       isexec: true
     - path: sentiment_model_trainer/preprocess.py
       hash: md5
-      md5: b1806c8d657f25469b353f5befa35e72
-      size: 2190
+      md5: cb5166412dad36d618fac42d1961cc41
+      size: 2153
       isexec: true
     outs:
     - path: artifacts/c1_BoW_Sentiment_Model.pkl
       hash: md5
-      md5: 21f57465a27b5f61c544dabb021a6939
+      md5: 50ae05d052d210a66e06cbb59aaf226c
       size: 39432
       isexec: true
     - path: data/processed/preprocessed_data.pkl
@@ -32,7 +32,7 @@ stages:
     deps:
     - path: artifacts/c1_BoW_Sentiment_Model.pkl
       hash: md5
-      md5: 21f57465a27b5f61c544dabb021a6939
+      md5: 50ae05d052d210a66e06cbb59aaf226c
       size: 39432
       isexec: true
     - path: data/processed/preprocessed_data.pkl
@@ -42,8 +42,8 @@ stages:
       isexec: true
     - path: sentiment_model_trainer/train.py
       hash: md5
-      md5: 5080cfb149defd7ce7972a5e9330c9ec
-      size: 2618
+      md5: 893a9ea25d1b602331b2588156705e32
+      size: 2627
       isexec: true
     outs:
     - path: artifacts/accuracy.json
@@ -53,7 +53,7 @@ stages:
       isexec: true
     - path: models/sentiment-model.pkl
       hash: md5
-      md5: 8652717f6a943326053c69be082821ff
+      md5: e2369f153a4b821d525fba40d42392c4
       size: 51840
       isexec: true
   evaluate:
@@ -72,8 +72,8 @@ stages:
       isexec: true
     - path: sentiment_model_trainer/evaluate.py
       hash: md5
-      md5: ec654af8f6cfef7a0e3eb7b14b0dee21
-      size: 1862
+      md5: 28e4364263bce60c5cfebae16144f315
+      size: 1867
       isexec: true
     outs:
     - path: artifacts/evaluation.json
@@ -86,22 +86,22 @@ stages:
     deps:
     - path: requirements.txt
       hash: md5
-      md5: 6245eefe01dd7a0b57e68d3f90027f80
-      size: 90
+      md5: ede084e3610059a88efea987e71a40cf
+      size: 182
       isexec: true
     - path: sentiment_model_trainer/
       hash: md5
-      md5: aa354fe468470ffaf708de646923cc7b.dir
-      size: 13076
-      nfiles: 7
+      md5: fd2ecb2ddc57b83d5c4bb3e06cdb48cf.dir
+      size: 19698
+      nfiles: 10
     - path: tests/
       hash: md5
-      md5: 84b8c8150122f98da646fd1bc54172e8.dir
-      size: 56823
-      nfiles: 20
+      md5: 63cbd9425e8a221e11ddf5853a1f5942.dir
+      size: 90577
+      nfiles: 26
     outs:
     - path: metrics/test_metrics.json
       hash: md5
-      md5: c9b7106e0e7330245d4b117796ef6e19
-      size: 146
+      md5: 893690888d57e13e219fe5c8e1cfd161
+      size: 140
       isexec: true
