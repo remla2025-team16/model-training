@@ -1,16 +1,15 @@
 stages:
   preprocess:
-    cmd: python sentiment_model_trainer/preprocess.py --input data/raw/a1_RestaurantReviews_HistoricDump.tsv
-      --output data/processed/preprocessed_data.pkl
+    cmd: python sentiment_model_trainer/preprocess.py --input data/raw/a1_RestaurantReviews_HistoricDump.tsv --output data/processed/preprocessed_data.pkl
     deps:
     - data/raw/a1_RestaurantReviews_HistoricDump.tsv
     - sentiment_model_trainer/preprocess.py
     outs:
     - data/processed/preprocessed_data.pkl
     - artifacts/c1_BoW_Sentiment_Model.pkl
+
   train:
-    cmd: python sentiment_model_trainer/train.py --input data/processed/preprocessed_data.pkl --vectorizer artifacts/c1_BoW_Sentiment_Model.pkl --model
-      models/sentiment-model.pkl --metrics artifacts/accuracy.json
+    cmd: python sentiment_model_trainer/train.py --input data/processed/preprocessed_data.pkl --vectorizer artifacts/c1_BoW_Sentiment_Model.pkl --model models/sentiment-model.pkl --metrics artifacts/accuracy.json
     deps:
     - data/processed/preprocessed_data.pkl
     - artifacts/c1_BoW_Sentiment_Model.pkl
@@ -20,12 +19,16 @@ stages:
     metrics:
     - artifacts/accuracy.json:
         cache: false
+    params:
+    - params.yaml
+
   evaluate:
-    cmd: python sentiment_model_trainer/evaluate.py --model models/sentiment-model-without-vectorizer.pkl --data data/processed/preprocessed_data.pkl
-      --output artifacts/evaluation.json
+    cmd: python sentiment_model_trainer/evaluate.py --model models/sentiment-model-without-vectorizer.pkl --data data/processed/preprocessed_data.pkl --output artifacts/evaluation.json
     deps:
     - data/processed/preprocessed_data.pkl
     - models/sentiment-model-without-vectorizer.pkl
     - sentiment_model_trainer/evaluate.py
     outs:
+    - artifacts/evaluation.json
+    metrics:
     - artifacts/evaluation.json

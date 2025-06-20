@@ -10,6 +10,7 @@ jobs:
   lint:
     name: "Code Linting"
     runs-on: ubuntu-latest
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -117,3 +118,5 @@ jobs:
         # The '|| exit 0' part prevents the step from failing if there are no changes to commit.
         git commit -m "Update test metrics and coverage badge" || exit 0
         git push
+
+
