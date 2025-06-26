@@ -10,4 +10,4 @@ pytest-benchmark
 psutil
 coverage-badge
 nltk
-lib-ml @ git+https://github.com/remla2025-team16/libml@v1.0.2
+lib-ml @ git+https://github.com/remla2025-team16/lib-ml@v1.0.2
