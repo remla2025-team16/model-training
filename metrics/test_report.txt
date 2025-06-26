@@ -1,5 +1,5 @@
 ============================= test session starts ==============================
-platform linux -- Python 3.12.10, pytest-8.4.1, pluggy-1.6.0
+platform linux -- Python 3.12.11, pytest-8.4.1, pluggy-1.6.0
 benchmark: 5.1.0 (defaults: timer=time.perf_counter disable_gc=False min_rounds=5 min_time=0.000005 max_time=1.0 calibration_precision=10 warmup=False warmup_iterations=100000)
 rootdir: /home/runner/work/model-training/model-training
 configfile: pytest.ini
@@ -11,13 +11,13 @@ tests/test_feature_cost.py .                                             [ 10%]
 tests/test_feature_data.py .                                             [ 20%]
 tests/test_model_development.py ..                                       [ 40%]
 tests/test_monitoring.py FF                                              [ 60%]
-tests/test_mutamorphic.py .F                                             [ 80%]
+tests/test_mutamorphic.py ..                                             [ 80%]
 tests/test_performance.py ..                                             [100%]
 
 =================================== FAILURES ===================================
 ________________________ test_prometheus_metrics_format ________________________
 
-self = <urllib3.connection.HTTPConnection object at 0x7fc8057240b0>
+self = <urllib3.connection.HTTPConnection object at 0x7fe52d48ce60>
 
     def _new_conn(self) -> socket.socket:
         """Establish a socket connection and set nodelay settings on it.
@@ -32,9 +32,9 @@ self = <urllib3.connection.HTTPConnection object at 0x7fc8057240b0>
                 socket_options=self.socket_options,
             )
 
-/opt/hostedtoolcache/Python/3.12.10/x64/lib/python3.12/site-packages/urllib3/connection.py:198: 
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/urllib3/connection.py:198: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-/opt/hostedtoolcache/Python/3.12.10/x64/lib/python3.12/site-packages/urllib3/util/connection.py:85: in create_connection
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/urllib3/util/connection.py:85: in create_connection
     raise err
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
@@ -90,11 +90,11 @@ socket_options = [(6, 1, 1)]
 >               sock.connect(sa)
 E               ConnectionRefusedError: [Errno 111] Connection refused
 
-/opt/hostedtoolcache/Python/3.12.10/x64/lib/python3.12/site-packages/urllib3/util/connection.py:73: ConnectionRefusedError
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/urllib3/util/connection.py:73: ConnectionRefusedError
 
 The above exception was the direct cause of the following exception:
 
-self = <urllib3.connectionpool.HTTPConnectionPool object at 0x7fc8057016a0>
+self = <urllib3.connectionpool.HTTPConnectionPool object at 0x7fe52d48c530>
 method = 'GET', url = '/metrics', body = None
 headers = {'User-Agent': 'python-requests/2.32.4', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'}
 retries = Retry(total=0, connect=None, read=False, redirect=None, status=None)
@@ -316,24 +316,24 @@ http_tunnel_required = False, err = None, clean_exit = False
                 **response_kw,
             )
 
-/opt/hostedtoolcache/Python/3.12.10/x64/lib/python3.12/site-packages/urllib3/connectionpool.py:787: 
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/urllib3/connectionpool.py:787: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-/opt/hostedtoolcache/Python/3.12.10/x64/lib/python3.12/site-packages/urllib3/connectionpool.py:493: in _make_request
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/urllib3/connectionpool.py:493: in _make_request
     conn.request(
-/opt/hostedtoolcache/Python/3.12.10/x64/lib/python3.12/site-packages/urllib3/connection.py:494: in request
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/urllib3/connection.py:494: in request
     self.endheaders()
-/opt/hostedtoolcache/Python/3.12.10/x64/lib/python3.12/http/client.py:1333: in endheaders
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/http/client.py:1333: in endheaders
     self._send_output(message_body, encode_chunked=encode_chunked)
-/opt/hostedtoolcache/Python/3.12.10/x64/lib/python3.12/http/client.py:1093: in _send_output
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/http/client.py:1093: in _send_output
     self.send(msg)
-/opt/hostedtoolcache/Python/3.12.10/x64/lib/python3.12/http/client.py:1037: in send
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/http/client.py:1037: in send
     self.connect()
-/opt/hostedtoolcache/Python/3.12.10/x64/lib/python3.12/site-packages/urllib3/connection.py:325: in connect
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/urllib3/connection.py:325: in connect
     self.sock = self._new_conn()
                 ^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <urllib3.connection.HTTPConnection object at 0x7fc8057240b0>
+self = <urllib3.connection.HTTPConnection object at 0x7fe52d48ce60>
 
     def _new_conn(self) -> socket.socket:
         """Establish a socket connection and set nodelay settings on it.
@@ -359,13 +359,13 @@ self = <urllib3.connection.HTTPConnection object at 0x7fc8057240b0>
 >           raise NewConnectionError(
                 self, f"Failed to establish a new connection: {e}"
             ) from e
-E           urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7fc8057240b0>: Failed to establish a new connection: [Errno 111] Connection refused
+E           urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7fe52d48ce60>: Failed to establish a new connection: [Errno 111] Connection refused
 
-/opt/hostedtoolcache/Python/3.12.10/x64/lib/python3.12/site-packages/urllib3/connection.py:213: NewConnectionError
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/urllib3/connection.py:213: NewConnectionError
 
 The above exception was the direct cause of the following exception:
 
-self = <requests.adapters.HTTPAdapter object at 0x7fc8057015b0>
+self = <requests.adapters.HTTPAdapter object at 0x7fe52d48c9b0>
 request = <PreparedRequest [GET]>, stream = False
 timeout = Timeout(connect=None, read=None, total=None), verify = True
 cert = None, proxies = OrderedDict()
@@ -438,17 +438,17 @@ cert = None, proxies = OrderedDict()
                 chunked=chunked,
             )
 
-/opt/hostedtoolcache/Python/3.12.10/x64/lib/python3.12/site-packages/requests/adapters.py:667: 
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/requests/adapters.py:667: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-/opt/hostedtoolcache/Python/3.12.10/x64/lib/python3.12/site-packages/urllib3/connectionpool.py:841: in urlopen
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/urllib3/connectionpool.py:841: in urlopen
     retries = retries.increment(
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
 self = Retry(total=0, connect=None, read=False, redirect=None, status=None)
 method = 'GET', url = '/metrics', response = None
-error = NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fc8057240b0>: Failed to establish a new connection: [Errno 111] Connection refused')
-_pool = <urllib3.connectionpool.HTTPConnectionPool object at 0x7fc8057016a0>
-_stacktrace = <traceback object at 0x7fc80558cb00>
+error = NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fe52d48ce60>: Failed to establish a new connection: [Errno 111] Connection refused')
+_pool = <urllib3.connectionpool.HTTPConnectionPool object at 0x7fe52d48c530>
+_stacktrace = <traceback object at 0x7fe52d2e7d80>
 
     def increment(
         self,
@@ -543,9 +543,9 @@ _stacktrace = <traceback object at 0x7fc80558cb00>
             reason = error or ResponseError(cause)
 >           raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-E           urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /metrics (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fc8057240b0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+E           urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /metrics (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fe52d48ce60>: Failed to establish a new connection: [Errno 111] Connection refused'))
 
-/opt/hostedtoolcache/Python/3.12.10/x64/lib/python3.12/site-packages/urllib3/util/retry.py:519: MaxRetryError
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/urllib3/util/retry.py:519: MaxRetryError
 
 During handling of the above exception, another exception occurred:
 
@@ -555,21 +555,21 @@ During handling of the above exception, another exception occurred:
 
 tests/test_monitoring.py:6: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-/opt/hostedtoolcache/Python/3.12.10/x64/lib/python3.12/site-packages/requests/api.py:73: in get
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/requests/api.py:73: in get
     return request("get", url, params=params, **kwargs)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-/opt/hostedtoolcache/Python/3.12.10/x64/lib/python3.12/site-packages/requests/api.py:59: in request
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/requests/api.py:59: in request
     return session.request(method=method, url=url, **kwargs)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-/opt/hostedtoolcache/Python/3.12.10/x64/lib/python3.12/site-packages/requests/sessions.py:589: in request
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/requests/sessions.py:589: in request
     resp = self.send(prep, **send_kwargs)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-/opt/hostedtoolcache/Python/3.12.10/x64/lib/python3.12/site-packages/requests/sessions.py:703: in send
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/requests/sessions.py:703: in send
     r = adapter.send(request, **kwargs)
         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <requests.adapters.HTTPAdapter object at 0x7fc8057015b0>
+self = <requests.adapters.HTTPAdapter object at 0x7fe52d48c9b0>
 request = <PreparedRequest [GET]>, stream = False
 timeout = Timeout(connect=None, read=None, total=None), verify = True
 cert = None, proxies = OrderedDict()
@@ -662,12 +662,12 @@ cert = None, proxies = OrderedDict()
                 raise SSLError(e, request=request)
     
 >           raise ConnectionError(e, request=request)
-E           requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /metrics (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fc8057240b0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+E           requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /metrics (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fe52d48ce60>: Failed to establish a new connection: [Errno 111] Connection refused'))
 
-/opt/hostedtoolcache/Python/3.12.10/x64/lib/python3.12/site-packages/requests/adapters.py:700: ConnectionError
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/requests/adapters.py:700: ConnectionError
 _________________________ test_custom_metrics_present __________________________
 
-self = <urllib3.connection.HTTPConnection object at 0x7fc805726e70>
+self = <urllib3.connection.HTTPConnection object at 0x7fe52d48e300>
 
     def _new_conn(self) -> socket.socket:
         """Establish a socket connection and set nodelay settings on it.
@@ -682,9 +682,9 @@ self = <urllib3.connection.HTTPConnection object at 0x7fc805726e70>
                 socket_options=self.socket_options,
             )
 
-/opt/hostedtoolcache/Python/3.12.10/x64/lib/python3.12/site-packages/urllib3/connection.py:198: 
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/urllib3/connection.py:198: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-/opt/hostedtoolcache/Python/3.12.10/x64/lib/python3.12/site-packages/urllib3/util/connection.py:85: in create_connection
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/urllib3/util/connection.py:85: in create_connection
     raise err
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
@@ -740,11 +740,11 @@ socket_options = [(6, 1, 1)]
 >               sock.connect(sa)
 E               ConnectionRefusedError: [Errno 111] Connection refused
 
-/opt/hostedtoolcache/Python/3.12.10/x64/lib/python3.12/site-packages/urllib3/util/connection.py:73: ConnectionRefusedError
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/urllib3/util/connection.py:73: ConnectionRefusedError
 
 The above exception was the direct cause of the following exception:
 
-self = <urllib3.connectionpool.HTTPConnectionPool object at 0x7fc805725cd0>
+self = <urllib3.connectionpool.HTTPConnectionPool object at 0x7fe52d48f0b0>
 method = 'GET', url = '/metrics', body = None
 headers = {'User-Agent': 'python-requests/2.32.4', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'}
 retries = Retry(total=0, connect=None, read=False, redirect=None, status=None)
@@ -966,24 +966,24 @@ http_tunnel_required = False, err = None, clean_exit = False
                 **response_kw,
             )
 
-/opt/hostedtoolcache/Python/3.12.10/x64/lib/python3.12/site-packages/urllib3/connectionpool.py:787: 
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/urllib3/connectionpool.py:787: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-/opt/hostedtoolcache/Python/3.12.10/x64/lib/python3.12/site-packages/urllib3/connectionpool.py:493: in _make_request
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/urllib3/connectionpool.py:493: in _make_request
     conn.request(
-/opt/hostedtoolcache/Python/3.12.10/x64/lib/python3.12/site-packages/urllib3/connection.py:494: in request
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/urllib3/connection.py:494: in request
     self.endheaders()
-/opt/hostedtoolcache/Python/3.12.10/x64/lib/python3.12/http/client.py:1333: in endheaders
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/http/client.py:1333: in endheaders
     self._send_output(message_body, encode_chunked=encode_chunked)
-/opt/hostedtoolcache/Python/3.12.10/x64/lib/python3.12/http/client.py:1093: in _send_output
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/http/client.py:1093: in _send_output
     self.send(msg)
-/opt/hostedtoolcache/Python/3.12.10/x64/lib/python3.12/http/client.py:1037: in send
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/http/client.py:1037: in send
     self.connect()
-/opt/hostedtoolcache/Python/3.12.10/x64/lib/python3.12/site-packages/urllib3/connection.py:325: in connect
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/urllib3/connection.py:325: in connect
     self.sock = self._new_conn()
                 ^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <urllib3.connection.HTTPConnection object at 0x7fc805726e70>
+self = <urllib3.connection.HTTPConnection object at 0x7fe52d48e300>
 
     def _new_conn(self) -> socket.socket:
         """Establish a socket connection and set nodelay settings on it.
@@ -1009,13 +1009,13 @@ self = <urllib3.connection.HTTPConnection object at 0x7fc805726e70>
 >           raise NewConnectionError(
                 self, f"Failed to establish a new connection: {e}"
             ) from e
-E           urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7fc805726e70>: Failed to establish a new connection: [Errno 111] Connection refused
+E           urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7fe52d48e300>: Failed to establish a new connection: [Errno 111] Connection refused
 
-/opt/hostedtoolcache/Python/3.12.10/x64/lib/python3.12/site-packages/urllib3/connection.py:213: NewConnectionError
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/urllib3/connection.py:213: NewConnectionError
 
 The above exception was the direct cause of the following exception:
 
-self = <requests.adapters.HTTPAdapter object at 0x7fc805727920>
+self = <requests.adapters.HTTPAdapter object at 0x7fe52d48ef60>
 request = <PreparedRequest [GET]>, stream = False
 timeout = Timeout(connect=None, read=None, total=None), verify = True
 cert = None, proxies = OrderedDict()
@@ -1088,17 +1088,17 @@ cert = None, proxies = OrderedDict()
                 chunked=chunked,
             )
 
-/opt/hostedtoolcache/Python/3.12.10/x64/lib/python3.12/site-packages/requests/adapters.py:667: 
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/requests/adapters.py:667: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-/opt/hostedtoolcache/Python/3.12.10/x64/lib/python3.12/site-packages/urllib3/connectionpool.py:841: in urlopen
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/urllib3/connectionpool.py:841: in urlopen
     retries = retries.increment(
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
 self = Retry(total=0, connect=None, read=False, redirect=None, status=None)
 method = 'GET', url = '/metrics', response = None
-error = NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fc805726e70>: Failed to establish a new connection: [Errno 111] Connection refused')
-_pool = <urllib3.connectionpool.HTTPConnectionPool object at 0x7fc805725cd0>
-_stacktrace = <traceback object at 0x7fc803082940>
+error = NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fe52d48e300>: Failed to establish a new connection: [Errno 111] Connection refused')
+_pool = <urllib3.connectionpool.HTTPConnectionPool object at 0x7fe52d48f0b0>
+_stacktrace = <traceback object at 0x7fe52d5c0c00>
 
     def increment(
         self,
@@ -1193,9 +1193,9 @@ _stacktrace = <traceback object at 0x7fc803082940>
             reason = error or ResponseError(cause)
 >           raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-E           urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /metrics (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fc805726e70>: Failed to establish a new connection: [Errno 111] Connection refused'))
+E           urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /metrics (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fe52d48e300>: Failed to establish a new connection: [Errno 111] Connection refused'))
 
-/opt/hostedtoolcache/Python/3.12.10/x64/lib/python3.12/site-packages/urllib3/util/retry.py:519: MaxRetryError
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/urllib3/util/retry.py:519: MaxRetryError
 
 During handling of the above exception, another exception occurred:
 
@@ -1205,21 +1205,21 @@ During handling of the above exception, another exception occurred:
 
 tests/test_monitoring.py:13: 
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
-/opt/hostedtoolcache/Python/3.12.10/x64/lib/python3.12/site-packages/requests/api.py:73: in get
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/requests/api.py:73: in get
     return request("get", url, params=params, **kwargs)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-/opt/hostedtoolcache/Python/3.12.10/x64/lib/python3.12/site-packages/requests/api.py:59: in request
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/requests/api.py:59: in request
     return session.request(method=method, url=url, **kwargs)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-/opt/hostedtoolcache/Python/3.12.10/x64/lib/python3.12/site-packages/requests/sessions.py:589: in request
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/requests/sessions.py:589: in request
     resp = self.send(prep, **send_kwargs)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-/opt/hostedtoolcache/Python/3.12.10/x64/lib/python3.12/site-packages/requests/sessions.py:703: in send
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/requests/sessions.py:703: in send
     r = adapter.send(request, **kwargs)
         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-self = <requests.adapters.HTTPAdapter object at 0x7fc805727920>
+self = <requests.adapters.HTTPAdapter object at 0x7fe52d48ef60>
 request = <PreparedRequest [GET]>, stream = False
 timeout = Timeout(connect=None, read=None, total=None), verify = True
 cert = None, proxies = OrderedDict()
@@ -1312,54 +1312,33 @@ cert = None, proxies = OrderedDict()
                 raise SSLError(e, request=request)
     
 >           raise ConnectionError(e, request=request)
-E           requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /metrics (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fc805726e70>: Failed to establish a new connection: [Errno 111] Connection refused'))
+E           requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /metrics (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fe52d48e300>: Failed to establish a new connection: [Errno 111] Connection refused'))
 
-/opt/hostedtoolcache/Python/3.12.10/x64/lib/python3.12/site-packages/requests/adapters.py:700: ConnectionError
-_ test_synonym_invariance[I hated the wait time, but the pasta was delicious.] _
-
-text = 'I hated the wait time, but the pasta was delicious.'
-
-    @pytest.mark.parametrize("text", [
-        "The food was absolutely wonderful, and the service was outstanding!",
-        "I hated the wait time, but the pasta was delicious.",
-    ])
-    def test_synonym_invariance(text):
-        """
-        Replace some words in `text` with synonyms;
-        model’s sentiment (positive/negative) shouldn’t change by more than +/- 0.1.
-        """
-        baseline_prob = pipeline.predict([text])[0]
-        transformed = replace_random_synonyms(text)
-        new_prob = pipeline.predict([transformed])[0]
-    
-        print(f"baseline_prob = {baseline_prob}")
-        print(f"transformed = {transformed}")
-    
-        if abs(new_prob - baseline_prob) > 0.1:
-            repaired = normalize_text(transformed)
-            repaired_prob = pipeline.predict([repaired])[0]
-    
->           assert abs(repaired_prob - baseline_prob) <= 0.1, (
-                f"Even after repair, Δ={abs(repaired_prob - baseline_prob):.3f} "
-                f"is too large for '{text}' → '{repaired}'."
-            )
-E           AssertionError: Even after repair, Δ=1.000 is too large for 'I hated the wait time, but the pasta was delicious.' → 'i hated the waitress time, but the pasta was delicious.'.
-E           assert np.int64(1) <= 0.1
-E            +  where np.int64(1) = abs((np.int64(1) - np.int64(0)))
-
-tests/test_mutamorphic.py:29: AssertionError
------------------------------ Captured stdout call -----------------------------
-baseline_prob = 0
-transformed = I hated the waitress time, but the pasta was delicious.
+/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/requests/adapters.py:700: ConnectionError
 =============================== warnings summary ===============================
+../../../../../opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/sklearn/base.py:440
+  /opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/sklearn/base.py:440: InconsistentVersionWarning: Trying to unpickle estimator CountVectorizer from version 1.6.1 when using version 1.7.0. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+  https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+    warnings.warn(
+
+../../../../../opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/sklearn/base.py:440
+  /opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/sklearn/base.py:440: InconsistentVersionWarning: Trying to unpickle estimator LogisticRegression from version 1.6.1 when using version 1.7.0. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+  https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+    warnings.warn(
+
+../../../../../opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/sklearn/base.py:440
+  /opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/sklearn/base.py:440: InconsistentVersionWarning: Trying to unpickle estimator Pipeline from version 1.6.1 when using version 1.7.0. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+  https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+    warnings.warn(
+
 tests/test_model_development.py::test_train_without_vectorizer
 tests/test_model_development.py::test_train_with_vectorizer
-  /opt/hostedtoolcache/Python/3.12.10/x64/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:456: DeprecationWarning: scipy.optimize: The `disp` and `iprint` options of the L-BFGS-B solver are deprecated and will be removed in SciPy 1.18.0.
+  /opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:456: DeprecationWarning: scipy.optimize: The `disp` and `iprint` options of the L-BFGS-B solver are deprecated and will be removed in SciPy 1.18.0.
     opt_res = optimize.minimize(
 
 -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
 ================================ tests coverage ================================
-_______________ coverage: platform linux, python 3.12.10-final-0 _______________
+_______________ coverage: platform linux, python 3.12.11-final-0 _______________
 
 Name                                    Stmts   Miss  Cover   Missing
 ---------------------------------------------------------------------
@@ -1373,16 +1352,13 @@ TOTAL                                      92     44    52%
 -------------------------------------------- benchmark 'inference_latency': 1 tests -------------------------------------------
 Name (time in us)               Min       Max      Mean   StdDev    Median      IQR  Outliers  OPS (Kops/s)  Rounds  Iterations
 -------------------------------------------------------------------------------------------------------------------------------
-test_inference_latency     201.4960  363.2490  213.7187  12.5061  208.3590  15.3932    225;27        4.6790    1359           1
+test_inference_latency     200.8540  377.8840  212.3704  11.9341  207.4265  12.3930    243;33        4.7088    1350           1
 -------------------------------------------------------------------------------------------------------------------------------
 
 Legend:
   Outliers: 1 Standard Deviation from Mean; 1.5 IQR (InterQuartile Range) from 1st Quartile and 3rd Quartile.
   OPS: Operations Per Second, computed as 1 / Mean
 =========================== short test summary info ============================
-FAILED tests/test_monitoring.py::test_prometheus_metrics_format - requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /metrics (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fc8057240b0>: Failed to establish a new connection: [Errno 111] Connection refused'))
-FAILED tests/test_monitoring.py::test_custom_metrics_present - requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /metrics (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fc805726e70>: Failed to establish a new connection: [Errno 111] Connection refused'))
-FAILED tests/test_mutamorphic.py::test_synonym_invariance[I hated the wait time, but the pasta was delicious.] - AssertionError: Even after repair, Δ=1.000 is too large for 'I hated the wait time, but the pasta was delicious.' → 'i hated the waitress time, but the pasta was delicious.'.
-assert np.int64(1) <= 0.1
- +  where np.int64(1) = abs((np.int64(1) - np.int64(0)))
-=================== 3 failed, 7 passed, 2 warnings in 8.88s ====================
+FAILED tests/test_monitoring.py::test_prometheus_metrics_format - requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /metrics (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fe52d48ce60>: Failed to establish a new connection: [Errno 111] Connection refused'))
+FAILED tests/test_monitoring.py::test_custom_metrics_present - requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=8080): Max retries exceeded with url: /metrics (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fe52d48e300>: Failed to establish a new connection: [Errno 111] Connection refused'))
+=================== 2 failed, 8 passed, 5 warnings in 8.87s ====================
