@@ -1,4 +1,4 @@
-# model-training 
+# Model-training 
 
 ![coverage](metrics/coverage.svg)
 ![pylint](metrics/pylint.svg)
